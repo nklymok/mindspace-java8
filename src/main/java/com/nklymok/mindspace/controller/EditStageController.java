@@ -6,17 +6,14 @@ import com.nklymok.mindspace.component.RepetitionComboBox;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
-import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 import tornadofx.control.DateTimePicker;
 
 public class EditStageController {
@@ -53,6 +50,7 @@ public class EditStageController {
         model.setDueDate(dateTimePicker.getDateTimeValue());
         model.setPriority(priorityComboBox.getPriority());
         taskService.update(model);
+        TaskManagerController.getInstance().modelToController(model).updateFields();
 
         // close edit window
         Node source = (Node)  event.getSource();

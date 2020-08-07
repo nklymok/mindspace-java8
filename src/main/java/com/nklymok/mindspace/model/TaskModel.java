@@ -5,7 +5,6 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Data
-@ToString
 public class TaskModel implements Comparable<TaskModel> {
     private Long id;
     private String header;

@@ -31,6 +31,16 @@ public class TaskManagerController {
         this.sandboxPaneController = sandboxPaneController;
     }
 
+    public TaskPaneController modelToController(TaskModel model) {
+        for (Map.Entry<TaskPaneController, RecentItemPaneController> e : taskToRecent.entrySet()) {
+            if (e.getKey().getModel().equals(model)) {
+                return e.getKey();
+            }
+        }
+
+        return null;
+    }
+
     public void setRecentsPane(RecentsPaneController recentsPaneController) {
         this.recentsPaneController = recentsPaneController;
     }

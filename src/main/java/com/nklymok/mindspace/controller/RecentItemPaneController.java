@@ -36,9 +36,7 @@ public class RecentItemPaneController {
         TaskManagerController.getInstance().removeByModel(model);
     };
 
-    EventHandler<ActionEvent> editButtonHandler = event -> {
-        edit();
-    };
+    EventHandler<ActionEvent> editButtonHandler = event -> edit();
 
     public RecentItemPaneController(TaskModel model) {
         this.model = model;
