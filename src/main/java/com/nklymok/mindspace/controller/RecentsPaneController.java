@@ -22,4 +22,9 @@ public class RecentsPaneController {
         modelToNode.put(taskModel, recentNode);
         recentsPane.getChildren().add(recentNode);
     }
+
+    public void removeRecent(TaskModel model) {
+        recentsPane.getChildren().remove(modelToNode.get(model));
+        modelToNode.remove(model);
+    }
 }

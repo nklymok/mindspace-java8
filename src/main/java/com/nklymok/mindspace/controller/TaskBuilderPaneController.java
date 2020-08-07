@@ -1,18 +1,26 @@
 package com.nklymok.mindspace.controller;
 
+import com.nklymok.mindspace.component.PriorityComboBox;
+import com.nklymok.mindspace.component.RepetitionComboBox;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.util.Pair;
 import tornadofx.control.DateTimePicker;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class TaskBuilderPaneController {
     @FXML
@@ -20,17 +28,18 @@ public class TaskBuilderPaneController {
     @FXML
     private TextArea fieldDescription;
     @FXML
-    private ComboBox priorityComboBox;
+    private PriorityComboBox priorityComboBox;
     @FXML
-    private Button createTaskButton;
+    private RepetitionComboBox repetitionComboBox;
     @FXML
     private PriorityPaneController comboBoxIndicatorPane;
     @FXML
-    private ComboBox repetitionComboBox;
-    @FXML
     private DateTimePicker dateTimePicker;
+    @FXML
+    private Button createTaskButton;
 
     private TaskService taskService;
+    private TaskManagerController taskManagerController;
     private SandboxPaneController sandboxPaneController;
     private RecentsPaneController recentsPaneController;
 
@@ -58,17 +67,19 @@ public class TaskBuilderPaneController {
         try {
             sandboxPaneController.addTask(taskFxmlLoader.load(), taskModel);
             recentsPaneController.addRecent(recentFxmlLoader.load(), taskModel);
+            TaskManagerController.getInstance().add(taskPaneController, recentItemPaneController);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void initialize() {
-        //Setting up the singletons
+        // setting up the singletons
         taskService = TaskServiceImpl.getInstance();
+        taskManagerController = TaskManagerController.getInstance();
 
         // setting button listener
-            createTaskButton.setOnAction(createTaskButtonHandler);
+        createTaskButton.setOnAction(createTaskButtonHandler);
 
         // setting passed calendar day cells to disabled & custom styles
         dateTimePicker.setDayCellFactory(datePicker -> new DateCell() {
@@ -80,6 +91,10 @@ public class TaskBuilderPaneController {
                 }
             }
         });
+    }
+
+    public void indicatorAction(ActionEvent actionEvent) {
+        comboBoxIndicatorPane.setPriority(priorityComboBox.getPriority());
     }
 
     public void setSandboxPaneController(SandboxPaneController sandboxPaneController) {

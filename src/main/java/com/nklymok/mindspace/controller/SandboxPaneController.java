@@ -23,8 +23,9 @@ public class SandboxPaneController {
         sandboxPane.getChildren().add(taskNode);
     }
 
-    public void removeTask(TaskModel taskModel) {
-        modelToNode.remove(taskModel);
+    public void removeTask(TaskModel model) {
+        sandboxPane.getChildren().remove(modelToNode.get(model));
+        modelToNode.remove(model);
     }
 
     public Node getTask(TaskModel model) {

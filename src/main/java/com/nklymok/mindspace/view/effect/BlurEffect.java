@@ -4,9 +4,11 @@ import javafx.scene.Parent;
 import javafx.scene.effect.GaussianBlur;
 
 public class BlurEffect {
-    private static final GaussianBlur BLUR = new GaussianBlur(5);
+    private final GaussianBlur BLUR;
+    private static Parent target;
 
-    private BlurEffect() {
+    public BlurEffect() {
+        BLUR = new GaussianBlur(5);
     }
 
     private static class BlurEffectHelper {
@@ -17,12 +19,16 @@ public class BlurEffect {
         return BlurEffectHelper.instance;
     }
 
-    public static void blur(Parent parent) {
-        parent.setEffect(BLUR);
+    public static void setTarget(Parent root) {
+        target = root;
     }
 
-    public static void unblur(Parent parent) {
-        parent.setEffect(null);
+    public void blur() {
+        target.setEffect(BLUR);
+    }
+
+    public void unblur() {
+        target.setEffect(null);
     }
 
 }

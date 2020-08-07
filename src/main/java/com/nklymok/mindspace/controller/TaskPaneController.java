@@ -17,7 +17,8 @@ import java.time.format.DateTimeFormatter;
 public class TaskPaneController {
 
     private final TaskService taskService;
-    private TaskModel model;
+
+    private final TaskModel model;
 
     @FXML
     private AnchorPane rootPane;
@@ -97,7 +98,12 @@ public class TaskPaneController {
         priorityPane.setPriority(model.getPriority());
     }
 
-    private void isLegal() {
-
+    private boolean isLegal() {
+        return false;
     }
+
+    public TaskModel getModel() {
+        return model;
+    }
+    //TODO isLegal - has legal boundarias and can leave them
 }
