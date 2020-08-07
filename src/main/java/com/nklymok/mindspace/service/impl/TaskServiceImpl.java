@@ -1,6 +1,6 @@
 package com.nklymok.mindspace.service.impl;
 
-import com.nklymok.mindspace.entity.Task;
+import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.exceptions.EntityNotFoundException;
 import com.nklymok.mindspace.exceptions.EntityNotSavedException;
 import com.nklymok.mindspace.repository.TaskRepository;
@@ -11,10 +11,6 @@ import java.util.List;
 
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
-
-    public TaskServiceImpl(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
 
     private TaskServiceImpl() {
         taskRepository = TaskRepositoryImpl.getInstance();
@@ -29,30 +25,30 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task findById(Long id) {
+    public TaskModel findById(Long id) {
         return taskRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException(String.format("Task with id \"%d\" not found.", id)));
+                () -> new EntityNotFoundException(String.format("TaskModel with id \"%d\" not found.", id)));
     }
 
     @Override
-    public List<Task> findAll() {
+    public List<TaskModel> findAll() {
         return taskRepository.findAll();
     }
 
     @Override
-    public Task save(Task task) {
+    public TaskModel save(TaskModel task) {
         return taskRepository.save(task).orElseThrow(
-                () -> new EntityNotSavedException("Task could not be saved"));
+                () -> new EntityNotSavedException("TaskModel could not be saved"));
     }
 
     @Override
-    public Task update(Task task) {
+    public TaskModel update(TaskModel task) {
         return taskRepository.update(task).orElseThrow(
-        () -> new EntityNotFoundException("Task could not be found."));
+        () -> new EntityNotFoundException("TaskModel could not be found."));
     }
 
     @Override
-    public void delete(Task task) {
+    public void delete(TaskModel task) {
         taskRepository.delete(task);
     }
 

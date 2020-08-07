@@ -1,0 +1,57 @@
+.pane {
+	-fx-background-color: #F0F0F0;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.25, 0.0, 4.0);
+	-fx-background-radius: 5px;
+	-fx-border-radius: 5px;
+	-fx-pref-width: 250px;
+	-fx-pref-height: 100px;
+}
+
+.task-header {
+	-fx-pref-width: 185px;
+	-fx-pref-height: 20px;
+
+	-fx-font-family: Roboto;
+	-fx-font-style: normal;
+	-fx-font-weight: bold;
+	-fx-font-size: 18px;
+	-fx-line-height: 21px;
+
+	-fx-fill: #000000;
+
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.25, 0.0, 0.0);
+}
+
+.task-description {
+	-fx-pref-width: 220px;
+	-fx-pref-height: 60px;
+	-fx-max-height: 60px;
+
+	-fx-font-family: Roboto;
+	-fx-font-style: normal;
+	-fx-font-weight: normal;
+	-fx-font-size: 11px;
+	-fx-line-height: 12px;
+	-fx-fill: #5B5B5B;
+}
+
+.task-due {
+	-fx-pref-width: 100px;
+	-fx-pref-height: 10px;
+
+	-fx-font-family: Roboto;
+	-fx-font-style: normal;
+	-fx-font-weight: normal;
+	-fx-font-size: 10px;
+	-fx-line-height: 12px;
+
+	-fx-fill: #666666;
+}
+
+.textfield-header {
+
+}
+
+.textfield-description {
+
+}

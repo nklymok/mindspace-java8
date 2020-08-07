@@ -1,8 +1,7 @@
 package com.nklymok.mindspace.service;
 
-import com.nklymok.mindspace.entity.Task;
-import com.nklymok.mindspace.repository.CrudRepository;
+import com.nklymok.mindspace.model.TaskModel;
 
-public interface TaskService extends CrudService<Task, Long> {
+public interface TaskService extends CrudService<TaskModel, Long> {
 
 }

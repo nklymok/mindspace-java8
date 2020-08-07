@@ -1,0 +1,62 @@
+.pane-odd {
+	-fx-background-color: #F0F0F0;
+}
+
+.pane-even {
+	-fx-background-color: #FFFFFF;
+}
+
+.tool-pane {
+	-fx-background-color: #DEDEDE;
+}
+
+.icon {
+	-fx-fill: #838383;
+	-fx-background-color: #ff0000;
+}
+
+.button {
+	-fx-border-color: transparent;
+	-fx-background-color: transparent;
+	-fx-background-radius: 0px;
+	-fx-border-radius: 0px;
+	-fx-border-width: 0;
+}
+
+.button:focused {
+	-fx-background-color: transparent;
+}
+
+.button-trash:hover {  
+    -fx-background-color: #F4B4B4;
+}
+
+
+.button-pencil:hover {  
+    -fx-background-color: #F6F690;
+}
+
+.recents-header {
+	-fx-pref-width: 160px;
+	-fx-pref-height: 10px;
+	-fx-font-family: Roboto;
+	-fx-font-style: normal;
+	-fx-font-weight: bold;
+	-fx-font-size: 12px;
+	-fx-line-height: 21px;
+	-fx-fill: #000000;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.25, 0.0, 0.0);
+}
+
+.recents-due {
+	-fx-pref-width: 100px;
+	-fx-pref-height: 10px;
+
+	-fx-font-family: Roboto;
+	-fx-font-style: normal;
+	-fx-font-weight: normal;
+	-fx-font-size: 10px;
+	-fx-line-height: 12px;
+
+	-fx-fill: #666666;
+}

@@ -1,0 +1,51 @@
+.low-priority-indicator {
+	-fx-min-width: 15px;
+	-fx-min-height: 15px;
+	-fx-pref-width: 15px;
+	-fx-pref-height: 15px;
+	-fx-max-width: 15px;
+	-fx-max-height: 15px;
+	-fx-background-color: #33FF00;
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.25, 0.0, 4.0);
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;
+}
+
+.medium-priority-indicator {
+	-fx-min-width: 15px;
+	-fx-min-height: 15px;
+	-fx-pref-width: 15px;
+	-fx-pref-height: 15px;
+	-fx-max-width: 15px;
+	-fx-max-height: 15px;
+	-fx-background-color: #FFEE00;
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.25, 0.0, 4.0);
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;
+}
+
+.high-priority-indicator {
+	-fx-min-width: 15px;
+	-fx-min-height: 15px;
+	-fx-pref-width: 15px;
+	-fx-pref-height: 15px;
+	-fx-max-width: 15px;
+	-fx-max-height: 15px;
+	-fx-background-color: #E30505;
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.25, 0.0, 4.0);
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;
+}
+
+.no-priority-indicator {
+	-fx-min-width: 15px;
+	-fx-min-height: 15px;
+	-fx-pref-width: 15px;
+	-fx-pref-height: 15px;
+	-fx-max-width: 15px;
+	-fx-max-height: 15px;
+	-fx-background-color: #BBBBBB;
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.25, 0.0, 4.0);
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;	
+}

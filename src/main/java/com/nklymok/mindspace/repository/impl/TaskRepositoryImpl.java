@@ -1,11 +1,12 @@
 package com.nklymok.mindspace.repository.impl;
 
 import com.nklymok.mindspace.connection.ConnectionManager;
-import com.nklymok.mindspace.entity.Task;
+import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.repository.TaskRepository;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,14 +36,14 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public Optional<Task> findById(Long id) {
-        Task task = null;
+    public Optional<TaskModel> findById(Long id) {
+        TaskModel task = null;
 
         try (PreparedStatement preparedStatement = CONNECTION.prepareStatement(SELECT_QUERY)) {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                task = Task
+                task = TaskModel
                         .builder()
                         .id(resultSet.getLong(1))
                         .header(resultSet.getString(2))
@@ -58,12 +59,12 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public List<Task> findAll() {
-        List<Task> taskList = new ArrayList<>();
+    public List<TaskModel> findAll() {
+        List<TaskModel> taskList = new ArrayList<>();
         try (PreparedStatement preparedStatement = CONNECTION.prepareStatement(SELECT_ALL_QUERY)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                taskList.add(Task.builder()
+                taskList.add(TaskModel.builder()
                 .id(resultSet.getLong(1))
                 .header(resultSet.getString(2))
                 .description(resultSet.getString(3))
@@ -79,7 +80,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public Optional<Task> save(Task task) {
+    public Optional<TaskModel> save(TaskModel task) {
         try (PreparedStatement preparedStatement = CONNECTION.prepareStatement(SAVE_QUERY, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, task.getHeader());
             preparedStatement.setString(2, task.getDescription());
@@ -99,7 +100,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public Optional<Task> update(Task task) {
+    public Optional<TaskModel> update(TaskModel task) {
         try (PreparedStatement preparedStatement = CONNECTION.prepareStatement(UPDATE_QUERY)) {
             preparedStatement.setString(1, task.getHeader());
             preparedStatement.setString(2, task.getDescription());
@@ -115,7 +116,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public void delete(Task task) {
+    public void delete(TaskModel task) {
         try (PreparedStatement preparedStatement = CONNECTION.prepareStatement(DELETE_QUERY)) {
             preparedStatement.setLong(1, task.getId());
             preparedStatement.executeUpdate();

@@ -1,10 +1,9 @@
 package com.nklymok.mindspace.service.impl;
 
-import com.nklymok.mindspace.entity.Task;
-import com.nklymok.mindspace.repository.TaskRepository;
+import com.nklymok.mindspace.model.TaskModel;
+import com.nklymok.mindspace.repository.impl.TaskRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -13,27 +12,27 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class TaskServiceImplTest {
 
     @Mock
-    private TaskRepository taskRepository;
-//    @InjectMocks
-//    private TaskServiceImpl taskService;
+    private TaskRepositoryImpl taskRepository;
+    @InjectMocks
+    private TaskServiceImpl taskService;
 
     @Test
     void save_savesTaskToDB_success() {
-        TaskServiceImpl taskService = new TaskServiceImpl(taskRepository);
-        Task expected = Task.builder()
-                .header("New Task")
+//        TaskServiceImpl taskService = new TaskServiceImpl(taskRepository);
+        TaskModel expected = TaskModel.builder()
+                .header("New TaskPane")
                 .description("Description")
                 .dueDate(LocalDateTime.now())
                 .priority(2)
                 .build();
-        Task task = Task.builder()
+        TaskModel task = TaskModel.builder()
                 .header("Saved")
                 .description("Saved")
                 .dueDate(LocalDateTime.now())
@@ -41,7 +40,7 @@ class TaskServiceImplTest {
                 .id(1L)
                 .build();
         Mockito.when(taskRepository.save(any())).thenReturn(Optional.ofNullable(expected));
-        Task actual = taskService.save(task);
+        TaskModel actual = taskService.save(task);
         Mockito.verify(taskRepository).save(any());
         assertEquals(expected, actual);
         System.out.println(actual);

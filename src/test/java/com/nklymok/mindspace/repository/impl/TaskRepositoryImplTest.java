@@ -1,7 +1,7 @@
 package com.nklymok.mindspace.repository.impl;
 
 import com.nklymok.mindspace.connection.ConnectionManager;
-import com.nklymok.mindspace.entity.Task;
+import com.nklymok.mindspace.model.TaskModel;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDateTime;
@@ -20,14 +20,14 @@ class TaskRepositoryImplTest {
 
     @Test
     public void save_saveTaskToDB_success() {
-        Task task = Task.builder()
-                .header("Task Header")
-                .description("Task Description")
+        TaskModel task = TaskModel.builder()
+                .header("TaskPane Header")
+                .description("TaskPane Description")
                 .dueDate(LocalDateTime.now())
                 .priority(2)
                 .build();
 
-        Optional<Task> optionalTask = taskRepositoryImpl.save(task);
+        Optional<TaskModel> optionalTask = taskRepositoryImpl.save(task);
         assertTrue(optionalTask.isPresent());
         System.out.println(optionalTask.get().getId());
         assertNotEquals(0, optionalTask.get().getId());
@@ -35,9 +35,9 @@ class TaskRepositoryImplTest {
 
     @Test
     public void findById_findsTaskByIdInDB_success() {
-        Task task = Task.builder()
-                .header("Task Header")
-                .description("Task Description")
+        TaskModel task = TaskModel.builder()
+                .header("TaskPane Header")
+                .description("TaskPane Description")
                 .dueDate(LocalDateTime.now())
                 .priority(2)
                 .build();
@@ -48,7 +48,7 @@ class TaskRepositoryImplTest {
 
     @Test
     public void findAll_findsAllTasksInDB_success() {
-        for (Task t : taskRepositoryImpl.findAll()) {
+        for (TaskModel t : taskRepositoryImpl.findAll()) {
             assertNotNull(taskRepositoryImpl.findById(t.getId()));
             assertNotEquals(0, t.getId());
         }
@@ -56,14 +56,14 @@ class TaskRepositoryImplTest {
 
     @Test
     public void delete_deleteTaskFromDB_success() {
-        Task task = Task.builder()
-                .header("Task Header")
-                .description("Task Description")
+        TaskModel task = TaskModel.builder()
+                .header("TaskPane Header")
+                .description("TaskPane Description")
                 .dueDate(LocalDateTime.now())
                 .priority(2)
                 .build();
 
-        Optional<Task> optionalTask = taskRepositoryImpl.save(task);
+        Optional<TaskModel> optionalTask = taskRepositoryImpl.save(task);
         assertTrue(optionalTask.isPresent());
         taskRepositoryImpl.delete(task);
         assertFalse(taskRepositoryImpl.findById(optionalTask.get().getId()).isPresent());
@@ -71,14 +71,14 @@ class TaskRepositoryImplTest {
 
     @Test
     public void deleteById_deleteTaskByIdInDB_success() {
-        Task task = Task.builder()
-                .header("Task Header")
-                .description("Task Description")
+        TaskModel task = TaskModel.builder()
+                .header("TaskPane Header")
+                .description("TaskPane Description")
                 .dueDate(LocalDateTime.now())
                 .priority(2)
                 .build();
 
-        Optional<Task> optionalTask = taskRepositoryImpl.save(task);
+        Optional<TaskModel> optionalTask = taskRepositoryImpl.save(task);
         assertTrue(optionalTask.isPresent());
         taskRepositoryImpl.deleteById(task.getId());
         assertFalse(taskRepositoryImpl.findById(optionalTask.get().getId()).isPresent());
@@ -86,7 +86,7 @@ class TaskRepositoryImplTest {
 
     @Test
     public void update_updatesTaskInDB_success() {
-        Optional<Task> taskOptional = taskRepositoryImpl.findById(2L);
+        Optional<TaskModel> taskOptional = taskRepositoryImpl.findById(2L);
         assertTrue(taskOptional.isPresent());
         taskOptional.get().setHeader("Updated task");
         taskRepositoryImpl.update(taskOptional.get());

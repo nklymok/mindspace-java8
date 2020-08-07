@@ -1,7 +1,7 @@
 package com.nklymok.mindspace.repository;
 
-import com.nklymok.mindspace.entity.Task;
+import com.nklymok.mindspace.model.TaskModel;
 
-public interface TaskRepository extends CrudRepository<Task, Long> {
+public interface TaskRepository extends CrudRepository<TaskModel, Long> {
 
 }

@@ -1,0 +1,75 @@
+
+/**
+* RecentsPane Styles
+*/
+.pane {
+	-fx-background-color: #FFFFFF;
+	-fx-pref-width: 200px;
+	-fx-pref-height: 300px;
+}
+
+.header {
+	-fx-font-family: Roboto;
+	-fx-font-style: normal;
+	-fx-font-weight: bold;
+	-fx-font-size: 18px;
+	-fx-fill: #000000;
+}
+
+.label {
+	-fx-font-family: Roboto;
+	-fx-font-style: normal;
+	-fx-font-weight: normal;
+	-fx-font-size: 14px;
+	-fx-fill: #5B5B5B;
+}
+
+.background {
+	-fx-background-color: #ffffff;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.25, 0.0, 4.0);
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-hbar-policy: never;
+    /*-fx-vbar-policy: as-needed;*/
+    -fx-vbar-policy: as-needed;
+    -fx-fit-to-height: true;
+    -fx-fit-to-width: true;
+}
+
+.scroll-bar {
+	-fx-padding: -6px;
+    -fx-border-insets: -6px;
+}
+
+.button:focused {
+	-fx-background-insets: 0 0 -1 0, 0, 1, 2;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button,
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+	-fx-opacity: 0;
+}
+
+/**
+* Recents Intervals
+*/
+
+.interval {
+	-fx-background-color: #FFFFFF;
+}
+
+.interval .label {
+	-fx-font-size: 10px;
+}
+
+.interval .time {
+	-fx-font-family: Roboto;
+	-fx-font-style: normal;
+	-fx-font-weight: normal;
+	-fx-font-size: 8px;
+	-fx-fill: #5B5B5B;
+}
