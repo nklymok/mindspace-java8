@@ -3,6 +3,7 @@ package com.nklymok.mindspace.controller;
 import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
 import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.view.effect.BlurEffect;
@@ -37,17 +38,17 @@ public class RecentItemPaneController implements Initializable, Subscriber {
     @FXML
     private PriorityPaneController priorityPane;
 
-    EventHandler<ActionEvent> removeButtonHandler = event -> {
-        TaskManagerController.getInstance().removeByModel(model);
+    private final EventHandler<ActionEvent> removeButtonHandler = event -> {
+        AppEventBus.post(new TaskDeleteEvent(model));
     };
 
-    EventHandler<ActionEvent> editButtonHandler = event -> edit();
+    private final EventHandler<ActionEvent> editButtonHandler = event -> edit();
 
     public RecentItemPaneController(TaskModel model) {
         this.model = model;
     }
 
-    public void edit() {
+    private void edit() {
         FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/edit-stage.fxml"));
         EditStageController editStageController = new EditStageController(model);
         editStageFXMLLoader.setController(editStageController);
@@ -69,7 +70,7 @@ public class RecentItemPaneController implements Initializable, Subscriber {
     }
 
     @Subscribe
-    public void handleTaskUpdateEvent(TaskUpdateEvent event) {
+    private void handleTaskUpdateEvent(TaskUpdateEvent event) {
         System.out.println("update in recentitem called");
         TaskModel eventModel = event.getModel();
         if(this.model.getId().equals(eventModel.getId())) {
@@ -79,7 +80,7 @@ public class RecentItemPaneController implements Initializable, Subscriber {
         updateFields();
     }
 
-    public void updateFields() {
+    private void updateFields() {
         updateHeaderText();
         updateDueText();
         updatePriority();

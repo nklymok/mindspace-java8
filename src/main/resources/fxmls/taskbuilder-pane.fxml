@@ -107,7 +107,7 @@
                 <Insets/>
             </GridPane.margin>
         </Text>
-        <PriorityComboBox fx:id="priorityComboBox" onAction="#indicatorAction" maxHeight="15.0" maxWidth="15.0" minHeight="15.0"
+        <PriorityComboBox fx:id="priorityComboBox" onAction="#priorityComboBoxAction" maxHeight="15.0" maxWidth="15.0" minHeight="15.0"
                           minWidth="15.0" prefHeight="15.0" prefWidth="15.0" GridPane.columnIndex="2"
                           GridPane.halignment="CENTER" GridPane.rowIndex="16" GridPane.valignment="CENTER">
             <GridPane.margin>

@@ -3,12 +3,12 @@ package com.nklymok.mindspace.controller;
 import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
 import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
 import com.nklymok.mindspace.view.effect.BlurEffect;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -52,17 +52,17 @@ public class TaskPaneController implements Initializable, Subscriber {
     private double mouseX = 0.0d;
     private double mouseY = 0.0d;
 
-    EventHandler<ActionEvent> editButtonHandler = event -> {
+    private final EventHandler<ActionEvent> editButtonHandler = event -> {
         edit();
     };
 
-    EventHandler<MouseEvent> mousePressHandler = e -> {
+    private final EventHandler<MouseEvent> mousePressHandler = e -> {
         rootPane.toFront();
         mouseX = e.getX();
         mouseY = e.getY();
     };
 
-    EventHandler<MouseEvent> mouseDragHandler = e -> {
+    private final EventHandler<MouseEvent> mouseDragHandler = e -> {
         double x = e.getX() + rootPane.getTranslateX() - mouseX,
                 y = e.getY() + rootPane.getTranslateY() - mouseY;
         rootPane.setTranslateX(x);
@@ -70,23 +70,24 @@ public class TaskPaneController implements Initializable, Subscriber {
         e.consume();
     };
 
-    EventHandler<MouseEvent> mouseReleaseHandler = Event::consume;
+    private final EventHandler<MouseEvent> mouseReleaseHandler = Event::consume;
 
     public TaskPaneController(TaskModel taskModel) {
         taskService = TaskServiceImpl.getInstance();
         model = taskModel;
     }
 
-    public void delete() {
+    private void delete() {
         taskService.delete(model);
     }
 
-    public void edit() {
+    private void edit() {
         FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/edit-stage.fxml"));
         EditStageController editStageController = new EditStageController(model);
         editStageFXMLLoader.setController(editStageController);
 
         Stage stage = new Stage(StageStyle.TRANSPARENT);
+        stage.setAlwaysOnTop(true);
         try {
             Scene editScene = new Scene(editStageFXMLLoader.load());
             editScene.setFill(Color.TRANSPARENT);
@@ -103,8 +104,7 @@ public class TaskPaneController implements Initializable, Subscriber {
     }
 
     @Subscribe
-    public void handleTaskUpdateEvent(TaskUpdateEvent event) {
-        System.out.println("update in task called");
+    private void handleTaskUpdateEvent(TaskUpdateEvent event) {
         TaskModel eventModel = event.getModel();
         if (this.model.getId().equals(eventModel.getId())) {
             this.model = eventModel;
@@ -112,7 +112,15 @@ public class TaskPaneController implements Initializable, Subscriber {
         }
     }
 
-    public void updateFields() {
+    @Subscribe
+    private void handleTaskDeleteEvent(TaskDeleteEvent event) {
+        TaskModel eventModel = event.getModel();
+        if (this.model.getId().equals(eventModel.getId())) {
+            delete();
+        }
+    }
+
+    private void updateFields() {
         taskService.update(model);
         updateHeader();
         updateDescription();

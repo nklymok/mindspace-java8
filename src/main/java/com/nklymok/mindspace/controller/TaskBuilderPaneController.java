@@ -1,9 +1,11 @@
 package com.nklymok.mindspace.controller;
 
+import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.component.PriorityComboBox;
 import com.nklymok.mindspace.component.RepetitionComboBox;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskCreateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
@@ -40,11 +42,8 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
     private Button createTaskButton;
 
     private TaskService taskService;
-    private TaskManagerController taskManagerController;
-    private SandboxPaneController sandboxPaneController;
-    private RecentsPaneController recentsPaneController;
 
-    EventHandler<ActionEvent> createTaskButtonHandler = event -> {
+    private final EventHandler<ActionEvent> createTaskButtonHandler = event -> {
         TaskModel taskModel = TaskModel
                 .builder()
                 .header(fieldHeader.getText())
@@ -56,7 +55,7 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
         createTask(taskModel);
     };
 
-    public void createTask(TaskModel taskModel) {
+    private void createTask(TaskModel taskModel) {
         FXMLLoader taskFxmlLoader = new FXMLLoader(getClass().getResource("/fxmls/task-pane.fxml"));
         TaskPaneController taskPaneController = new TaskPaneController(taskModel);
         taskFxmlLoader.setController(taskPaneController);
@@ -66,24 +65,22 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
         recentFxmlLoader.setController(recentItemPaneController);
 
         try {
-            sandboxPaneController.addTask(taskFxmlLoader.load(), taskModel);
-            recentsPaneController.addRecent(recentFxmlLoader.load(), taskModel);
-            TaskManagerController.getInstance().add(taskPaneController, recentItemPaneController);
+            AppEventBus.post(new TaskCreateEvent(taskModel, taskFxmlLoader.load(), recentFxmlLoader.load()));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void indicatorAction(ActionEvent actionEvent) {
+    @Subscribe
+    private void handleTaskCreateEvent(TaskCreateEvent event) {
+        if (event.getTaskParent() == null && event.getRecentParent() == null) {
+            createTask(event.getModel());
+        }
+    }
+
+    @FXML
+    private void priorityComboBoxAction(ActionEvent actionEvent) {
         comboBoxIndicatorPane.setPriority(priorityComboBox.getPriority());
-    }
-
-    public void setSandboxPaneController(SandboxPaneController sandboxPaneController) {
-        this.sandboxPaneController = sandboxPaneController;
-    }
-
-    public void setRecentsPaneController(RecentsPaneController recentsPaneController) {
-        this.recentsPaneController = recentsPaneController;
     }
 
     @FXML
@@ -92,7 +89,6 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
         AppEventBus.register(this);
         // setting up the singletons
         taskService = TaskServiceImpl.getInstance();
-        taskManagerController = TaskManagerController.getInstance();
 
         // setting button listener
         createTaskButton.setOnAction(createTaskButtonHandler);

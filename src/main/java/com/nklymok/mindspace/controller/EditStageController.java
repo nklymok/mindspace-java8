@@ -44,14 +44,14 @@ public class EditStageController implements Initializable, Subscriber {
     private TaskService taskService;
     private TaskModel model;
 
-    EventHandler<ActionEvent> exitButtonHandler = event -> {
+    private final EventHandler<ActionEvent> exitButtonHandler = event -> {
         // close edit window
         Node source = (Node)  event.getSource();
         Stage stage  = (Stage) source.getScene().getWindow();
         stage.close();
     };
 
-    EventHandler<ActionEvent> saveAndExitButtonHandler = event -> {
+    private final EventHandler<ActionEvent> saveAndExitButtonHandler = event -> {
         updateModelFields();
         taskService.update(model);
         AppEventBus.post(new TaskUpdateEvent(model));
@@ -66,11 +66,12 @@ public class EditStageController implements Initializable, Subscriber {
         this.model = model;
     }
 
-    public void indicatorAction(ActionEvent actionEvent) {
+    @FXML
+    private void priorityComboBoxAction(ActionEvent actionEvent) {
         comboBoxIndicatorPane.setPriority(priorityComboBox.getPriority());
     }
 
-    public void updateModelFields() {
+    private void updateModelFields() {
         model.setHeader(fieldHeader.getText());
         model.setDescription(fieldDescription.getText());
         model.setDueDate(dateTimePicker.getDateTimeValue());
@@ -80,6 +81,25 @@ public class EditStageController implements Initializable, Subscriber {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/edit-stage.fxml"));
+//        EditStageController editStageController = new EditStageController(model);
+//        editStageFXMLLoader.setController(editStageController);
+//
+//        Stage stage = new Stage(StageStyle.TRANSPARENT);
+//        stage.setAlwaysOnTop(true);
+//        try {
+//            Scene editScene = new Scene(editStageFXMLLoader.load());
+//            editScene.setFill(Color.TRANSPARENT);
+//            stage.setScene(editScene);
+//            stage.setOnHidden(event -> {
+//
+//            });
+//            stage.setOnShown(event -> BlurEffect.getInstance().blur());
+//            stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
+//            stage.show();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         // getting the singletons
         AppEventBus.register(this);
         taskService = TaskServiceImpl.getInstance();
@@ -88,12 +108,13 @@ public class EditStageController implements Initializable, Subscriber {
         fieldHeader.setText(model.getHeader());
         fieldDescription.setText(model.getDescription());
         priorityComboBox.setPriority(model.getPriority());
+        comboBoxIndicatorPane.setPriority(model.getPriority());
         repetitionComboBox.setValue(Repeats.None); //TODO: add repeats
         dateTimePicker.setDateTimeValue(model.getDueDate());
 
         // setting listeners
         exitButton.setOnAction(exitButtonHandler);
         saveAndExitButton.setOnAction(saveAndExitButtonHandler);
-        priorityComboBox.setOnAction(this::indicatorAction);
+        priorityComboBox.setOnAction(this::priorityComboBoxAction);
     }
 }

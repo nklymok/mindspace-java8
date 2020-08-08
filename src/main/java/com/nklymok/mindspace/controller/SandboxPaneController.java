@@ -1,6 +1,7 @@
 package com.nklymok.mindspace.controller;
 
-import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.google.common.eventbus.Subscribe;
+import com.nklymok.mindspace.eventsystem.*;
 import com.nklymok.mindspace.model.TaskModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,7 +26,7 @@ public class SandboxPaneController implements Initializable, Subscriber {
         modelToNode = new TreeMap<>();
     }
 
-    public void addTask(Node taskNode, TaskModel taskModel) {
+    private void addTask(Node taskNode, TaskModel taskModel) {
         modelToNode.put(taskModel, taskNode);
         sandboxPane.getChildren().add(taskNode);
 
@@ -34,12 +35,24 @@ public class SandboxPaneController implements Initializable, Subscriber {
         taskNode.translateYProperty().addListener(e -> relocateTaskNode(taskNode));
     }
 
-    public void removeTask(TaskModel model) {
+    private void removeTask(TaskModel model) {
         sandboxPane.getChildren().remove(modelToNode.get(model));
         modelToNode.remove(model);
     }
 
-    public void relocateTaskNode(Node taskNode) {
+    @Subscribe
+    private void handleTaskCreateEvent(TaskCreateEvent event) {
+        if (event.getTaskParent() != null) {
+            addTask(event.getTaskParent(), event.getModel());
+        }
+    }
+
+    @Subscribe
+    private void handleTaskDeleteEvent(TaskDeleteEvent event) {
+        removeTask(event.getModel());
+    }
+
+    private void relocateTaskNode(Node taskNode) {
         int parameter = legalCheck(taskNode.getTranslateX(), taskNode.getTranslateY());
         switch (parameter) {
             case -1:
@@ -55,10 +68,6 @@ public class SandboxPaneController implements Initializable, Subscriber {
                 taskNode.setTranslateY(sandboxPane.heightProperty().doubleValue() - TASK_HEIGHT);
                 break;
         }
-    }
-
-    public Node getTask(TaskModel model) {
-        return modelToNode.get(model);
     }
 
     private int legalCheck(double x, double y) {
@@ -88,6 +97,8 @@ public class SandboxPaneController implements Initializable, Subscriber {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        AppEventBus.register(this);
+
         sandboxPane.widthProperty().addListener(e -> {
             for (Map.Entry<TaskModel, Node> item : modelToNode.entrySet()) {
                 relocateTaskNode(item.getValue());

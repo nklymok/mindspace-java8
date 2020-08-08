@@ -1,7 +1,10 @@
 package com.nklymok.mindspace.controller;
 
+import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskCreateEvent;
+import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,14 +26,26 @@ public class RecentsPaneController implements Initializable, Subscriber {
         modelToNode = new TreeMap<>();
     }
 
-    public void addRecent(Node recentNode, TaskModel taskModel) {
+    private void addRecent(Node recentNode, TaskModel taskModel) {
         modelToNode.put(taskModel, recentNode);
         recentsPane.getChildren().add(recentNode);
     }
 
-    public void removeRecent(TaskModel model) {
+    private void removeRecent(TaskModel model) {
         recentsPane.getChildren().remove(modelToNode.get(model));
         modelToNode.remove(model);
+    }
+
+    @Subscribe
+    public void handleTaskCreateEvent(TaskCreateEvent event) {
+        if (event.getTaskParent() != null) {
+            addRecent(event.getRecentParent(), event.getModel());
+        }
+    }
+
+    @Subscribe
+    private void handleTaskDeleteEvent(TaskDeleteEvent event) {
+        removeRecent(event.getModel());
     }
 
     @FXML

@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:controller="com.nklymok.mindspace.controller.SidePaneController" xmlns="http://javafx.com/javafx/8.0.65"
+<VBox xmlns="http://javafx.com/javafx/8.0.65"
       xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <fx:include source="/fxmls/taskbuilder-pane.fxml" VBox.vgrow="ALWAYS" fx:id="taskBuilderPane"/>
