@@ -20,7 +20,7 @@
 <?import com.nklymok.mindspace.component.RepetitionComboBox?>
 <BorderPane maxHeight="350.0" maxWidth="350.0" minHeight="350.0" minWidth="350.0" prefHeight="350.0" prefWidth="350.0"
             styleClass="editor-background" stylesheets="@../styles/TaskBuilder_styles.css"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+            xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1">
     <center>
         <GridPane maxHeight="350.0" maxWidth="350.0" minHeight="350.0" minWidth="350.0" prefHeight="350.0"
                   prefWidth="350.0" BorderPane.alignment="CENTER">
