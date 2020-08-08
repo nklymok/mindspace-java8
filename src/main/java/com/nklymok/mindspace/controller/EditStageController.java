@@ -5,6 +5,7 @@ import com.nklymok.mindspace.component.Repeats;
 import com.nklymok.mindspace.component.RepetitionComboBox;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
@@ -51,12 +52,9 @@ public class EditStageController implements Initializable, Subscriber {
     };
 
     EventHandler<ActionEvent> saveAndExitButtonHandler = event -> {
-        model.setHeader(fieldHeader.getText());
-        model.setDescription(fieldDescription.getText());
-        model.setDueDate(dateTimePicker.getDateTimeValue());
-        model.setPriority(priorityComboBox.getPriority());
+        updateModelFields();
         taskService.update(model);
-        TaskManagerController.getInstance().modelToController(model).updateFields();
+        AppEventBus.post(new TaskUpdateEvent(model));
 
         // close edit window
         Node source = (Node)  event.getSource();
@@ -70,6 +68,13 @@ public class EditStageController implements Initializable, Subscriber {
 
     public void indicatorAction(ActionEvent actionEvent) {
         comboBoxIndicatorPane.setPriority(priorityComboBox.getPriority());
+    }
+
+    public void updateModelFields() {
+        model.setHeader(fieldHeader.getText());
+        model.setDescription(fieldDescription.getText());
+        model.setDueDate(dateTimePicker.getDateTimeValue());
+        model.setPriority(priorityComboBox.getPriority());
     }
 
     @FXML

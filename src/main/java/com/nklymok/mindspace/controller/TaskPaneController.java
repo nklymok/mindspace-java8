@@ -1,10 +1,14 @@
 package com.nklymok.mindspace.controller;
 
+import com.google.common.eventbus.Subscribe;
+import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
 import com.nklymok.mindspace.view.effect.BlurEffect;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -28,7 +32,7 @@ public class TaskPaneController implements Initializable, Subscriber {
 
     private final TaskService taskService;
 
-    private final TaskModel model;
+    private TaskModel model;
 
     @FXML
     private AnchorPane rootPane;
@@ -98,6 +102,16 @@ public class TaskPaneController implements Initializable, Subscriber {
         }
     }
 
+    @Subscribe
+    public void handleTaskUpdateEvent(TaskUpdateEvent event) {
+        System.out.println("update in task called");
+        TaskModel eventModel = event.getModel();
+        if (this.model.getId().equals(eventModel.getId())) {
+            this.model = eventModel;
+            updateFields();
+        }
+    }
+
     public void updateFields() {
         taskService.update(model);
         updateHeader();
@@ -129,6 +143,8 @@ public class TaskPaneController implements Initializable, Subscriber {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        AppEventBus.register(this);
+
         editButton.setOnAction(editButtonHandler);
         rootPane.setOnMouseDragged(mouseDragHandler);
         rootPane.setOnMousePressed(mousePressHandler);

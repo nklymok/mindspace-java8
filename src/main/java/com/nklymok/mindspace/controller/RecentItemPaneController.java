@@ -1,7 +1,9 @@
 package com.nklymok.mindspace.controller;
 
+import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
@@ -45,12 +47,6 @@ public class RecentItemPaneController implements Initializable, Subscriber {
         this.model = model;
     }
 
-    public void initialize() {
-        updateFields();
-        removeButton.setOnAction(removeButtonHandler);
-        editButton.setOnAction(editButtonHandler);
-    }
-
     public void edit() {
         FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/edit-stage.fxml"));
         EditStageController editStageController = new EditStageController(model);
@@ -70,6 +66,17 @@ public class RecentItemPaneController implements Initializable, Subscriber {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Subscribe
+    public void handleTaskUpdateEvent(TaskUpdateEvent event) {
+        System.out.println("update in recentitem called");
+        TaskModel eventModel = event.getModel();
+        if(this.model.getId().equals(eventModel.getId())) {
+            this.model = eventModel;
+        }
+
+        updateFields();
     }
 
     public void updateFields() {
@@ -98,5 +105,9 @@ public class RecentItemPaneController implements Initializable, Subscriber {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         AppEventBus.register(this);
+
+        updateFields();
+        removeButton.setOnAction(removeButtonHandler);
+        editButton.setOnAction(editButtonHandler);
     }
 }
