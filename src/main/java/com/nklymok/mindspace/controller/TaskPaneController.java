@@ -33,6 +33,8 @@ public class TaskPaneController {
     @FXML
     private Text dueText;
 
+    private double xBoundary = 0.0d;
+    private double yBoundary = 0.0d;
     private double mouseX = 0.0d;
     private double mouseY = 0.0d;
 
@@ -96,10 +98,6 @@ public class TaskPaneController {
 
     private void updatePriority() {
         priorityPane.setPriority(model.getPriority());
-    }
-
-    private boolean isLegal() {
-        return false;
     }
 
     public TaskModel getModel() {
