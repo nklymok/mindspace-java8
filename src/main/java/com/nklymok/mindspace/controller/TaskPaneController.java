@@ -92,11 +92,9 @@ public class TaskPaneController implements Initializable, Subscriber {
             Scene editScene = new Scene(editStageFXMLLoader.load());
             editScene.setFill(Color.TRANSPARENT);
             stage.setScene(editScene);
-            stage.setOnHidden(event -> {
-
-            });
             stage.setOnShown(event -> BlurEffect.getInstance().blur());
             stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
+            stage.setAlwaysOnTop(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

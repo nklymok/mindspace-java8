@@ -81,25 +81,6 @@ public class EditStageController implements Initializable, Subscriber {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/edit-stage.fxml"));
-//        EditStageController editStageController = new EditStageController(model);
-//        editStageFXMLLoader.setController(editStageController);
-//
-//        Stage stage = new Stage(StageStyle.TRANSPARENT);
-//        stage.setAlwaysOnTop(true);
-//        try {
-//            Scene editScene = new Scene(editStageFXMLLoader.load());
-//            editScene.setFill(Color.TRANSPARENT);
-//            stage.setScene(editScene);
-//            stage.setOnHidden(event -> {
-//
-//            });
-//            stage.setOnShown(event -> BlurEffect.getInstance().blur());
-//            stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
-//            stage.show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         // getting the singletons
         AppEventBus.register(this);
         taskService = TaskServiceImpl.getInstance();

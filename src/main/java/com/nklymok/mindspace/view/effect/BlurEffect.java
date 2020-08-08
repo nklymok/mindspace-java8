@@ -25,10 +25,12 @@ public class BlurEffect {
 
     public void blur() {
         target.setEffect(BLUR);
+        target.setMouseTransparent(true);
     }
 
     public void unblur() {
         target.setEffect(null);
+        target.setMouseTransparent(false);
     }
 
 }

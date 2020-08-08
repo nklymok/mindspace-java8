@@ -58,11 +58,9 @@ public class RecentItemPaneController implements Initializable, Subscriber {
             Scene editScene = new Scene(editStageFXMLLoader.load());
             editScene.setFill(Color.TRANSPARENT);
             stage.setScene(editScene);
-            stage.setOnHidden(event -> {
-
-            });
             stage.setOnShown(event -> BlurEffect.getInstance().blur());
             stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
+            stage.setAlwaysOnTop(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,7 +69,6 @@ public class RecentItemPaneController implements Initializable, Subscriber {
 
     @Subscribe
     private void handleTaskUpdateEvent(TaskUpdateEvent event) {
-        System.out.println("update in recentitem called");
         TaskModel eventModel = event.getModel();
         if(this.model.getId().equals(eventModel.getId())) {
             this.model = eventModel;
