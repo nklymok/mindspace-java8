@@ -2,27 +2,28 @@ package com.nklymok.mindspace.controller;
 
 import com.nklymok.mindspace.component.PriorityComboBox;
 import com.nklymok.mindspace.component.RepetitionComboBox;
+import com.nklymok.mindspace.eventsystem.AppEventBus;
+import com.nklymok.mindspace.eventsystem.Subscriber;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
-import javafx.util.Pair;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import tornadofx.control.DateTimePicker;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class TaskBuilderPaneController {
+public class TaskBuilderPaneController implements Initializable, Subscriber {
     @FXML
     private TextField fieldHeader;
     @FXML
@@ -73,7 +74,22 @@ public class TaskBuilderPaneController {
         }
     }
 
-    public void initialize() {
+    public void indicatorAction(ActionEvent actionEvent) {
+        comboBoxIndicatorPane.setPriority(priorityComboBox.getPriority());
+    }
+
+    public void setSandboxPaneController(SandboxPaneController sandboxPaneController) {
+        this.sandboxPaneController = sandboxPaneController;
+    }
+
+    public void setRecentsPaneController(RecentsPaneController recentsPaneController) {
+        this.recentsPaneController = recentsPaneController;
+    }
+
+    @FXML
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        AppEventBus.register(this);
         // setting up the singletons
         taskService = TaskServiceImpl.getInstance();
         taskManagerController = TaskManagerController.getInstance();
@@ -91,17 +107,5 @@ public class TaskBuilderPaneController {
                 }
             }
         });
-    }
-
-    public void indicatorAction(ActionEvent actionEvent) {
-        comboBoxIndicatorPane.setPriority(priorityComboBox.getPriority());
-    }
-
-    public void setSandboxPaneController(SandboxPaneController sandboxPaneController) {
-        this.sandboxPaneController = sandboxPaneController;
-    }
-
-    public void setRecentsPaneController(RecentsPaneController recentsPaneController) {
-        this.recentsPaneController = recentsPaneController;
     }
 }

@@ -44,6 +44,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
+        <dependency>
             <groupId>no.tornado</groupId>
             <artifactId>tornadofx-controls</artifactId>
             <version>1.0.6</version>

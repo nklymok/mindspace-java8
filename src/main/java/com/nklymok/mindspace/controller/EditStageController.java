@@ -3,12 +3,15 @@ package com.nklymok.mindspace.controller;
 import com.nklymok.mindspace.component.PriorityComboBox;
 import com.nklymok.mindspace.component.Repeats;
 import com.nklymok.mindspace.component.RepetitionComboBox;
+import com.nklymok.mindspace.eventsystem.AppEventBus;
+import com.nklymok.mindspace.eventsystem.Subscriber;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -16,7 +19,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tornadofx.control.DateTimePicker;
 
-public class EditStageController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class EditStageController implements Initializable, Subscriber {
     @FXML
     private Button exitButton;
     @FXML
@@ -62,8 +68,15 @@ public class EditStageController {
         this.model = model;
     }
 
-    public void initialize() {
+    public void indicatorAction(ActionEvent actionEvent) {
+        comboBoxIndicatorPane.setPriority(priorityComboBox.getPriority());
+    }
+
+    @FXML
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         // getting the singletons
+        AppEventBus.register(this);
         taskService = TaskServiceImpl.getInstance();
 
         // setting existing values
@@ -77,9 +90,5 @@ public class EditStageController {
         exitButton.setOnAction(exitButtonHandler);
         saveAndExitButton.setOnAction(saveAndExitButtonHandler);
         priorityComboBox.setOnAction(this::indicatorAction);
-    }
-
-    public void indicatorAction(ActionEvent actionEvent) {
-        comboBoxIndicatorPane.setPriority(priorityComboBox.getPriority());
     }
 }

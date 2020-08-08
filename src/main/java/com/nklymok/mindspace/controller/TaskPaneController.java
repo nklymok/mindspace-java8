@@ -1,20 +1,30 @@
 package com.nklymok.mindspace.controller;
 
+import com.nklymok.mindspace.eventsystem.Subscriber;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
+import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.net.URL;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
-public class TaskPaneController {
+public class TaskPaneController implements Initializable, Subscriber {
 
     private final TaskService taskService;
 
@@ -39,7 +49,7 @@ public class TaskPaneController {
     private double mouseY = 0.0d;
 
     EventHandler<ActionEvent> editButtonHandler = event -> {
-        System.out.println("Edit button clicked");
+        edit();
     };
 
     EventHandler<MouseEvent> mousePressHandler = e -> {
@@ -63,17 +73,29 @@ public class TaskPaneController {
         model = taskModel;
     }
 
-    @FXML
-    public void initialize() {
-        editButton.setOnAction(editButtonHandler);
-        rootPane.setOnMouseDragged(mouseDragHandler);
-        rootPane.setOnMousePressed(mousePressHandler);
-        rootPane.setOnMouseReleased(mouseReleaseHandler);
-        updateFields();
-    }
-
     public void delete() {
         taskService.delete(model);
+    }
+
+    public void edit() {
+        FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/edit-stage.fxml"));
+        EditStageController editStageController = new EditStageController(model);
+        editStageFXMLLoader.setController(editStageController);
+
+        Stage stage = new Stage(StageStyle.TRANSPARENT);
+        try {
+            Scene editScene = new Scene(editStageFXMLLoader.load());
+            editScene.setFill(Color.TRANSPARENT);
+            stage.setScene(editScene);
+            stage.setOnHidden(event -> {
+
+            });
+            stage.setOnShown(event -> BlurEffect.getInstance().blur());
+            stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateFields() {
@@ -103,5 +125,14 @@ public class TaskPaneController {
     public TaskModel getModel() {
         return model;
     }
-    //TODO isLegal - has legal boundarias and can leave them
+
+    @FXML
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        editButton.setOnAction(editButtonHandler);
+        rootPane.setOnMouseDragged(mouseDragHandler);
+        rootPane.setOnMousePressed(mousePressHandler);
+        rootPane.setOnMouseReleased(mouseReleaseHandler);
+        updateFields();
+    }
 }

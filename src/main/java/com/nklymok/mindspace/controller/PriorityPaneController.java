@@ -1,13 +1,20 @@
 package com.nklymok.mindspace.controller;
 
+import com.nklymok.mindspace.eventsystem.AppEventBus;
+import com.nklymok.mindspace.eventsystem.Subscriber;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * A colored indicator on tasks, recents and in TaskBuilder.
  * @author Nazarii Klymok
  */
-public class PriorityPaneController extends Pane implements Comparable<PriorityPaneController> {
+public class PriorityPaneController extends Pane implements Initializable, Comparable<PriorityPaneController>, Subscriber {
     private int priority;
 
     /**
@@ -100,5 +107,11 @@ public class PriorityPaneController extends Pane implements Comparable<PriorityP
 
     public int compareTo(PriorityPaneController p) {
         return Integer.compare(this.getIntValue(), p.getIntValue());
+    }
+
+    @FXML
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        AppEventBus.register(this);
     }
 }

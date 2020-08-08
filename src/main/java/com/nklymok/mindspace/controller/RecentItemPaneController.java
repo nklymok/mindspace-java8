@@ -1,12 +1,14 @@
 package com.nklymok.mindspace.controller;
 
+import com.nklymok.mindspace.eventsystem.AppEventBus;
+import com.nklymok.mindspace.eventsystem.Subscriber;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
@@ -14,10 +16,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
+import java.net.URL;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
-public class RecentItemPaneController {
+public class RecentItemPaneController implements Initializable, Subscriber {
     private final String DUE_PREFIX = "Due: ";
     private TaskModel model;
 
@@ -91,5 +94,9 @@ public class RecentItemPaneController {
         return model;
     }
 
-    //TODO actionlisteners for buttons, removing task and recent from map
+    @FXML
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        AppEventBus.register(this);
+    }
 }
