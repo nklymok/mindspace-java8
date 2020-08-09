@@ -6,7 +6,7 @@ import lombok.Getter;
 public class TaskDeleteEvent implements Postable {
 
     @Getter
-    private TaskModel model;
+    private final TaskModel model;
 
     public TaskDeleteEvent(TaskModel model) {
         this.model = model;

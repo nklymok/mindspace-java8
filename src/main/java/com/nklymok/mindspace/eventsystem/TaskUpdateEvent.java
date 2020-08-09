@@ -6,7 +6,7 @@ import lombok.Getter;
 public class TaskUpdateEvent implements Postable {
 
     @Getter
-    private TaskModel model;
+    private final TaskModel model;
 
     public TaskUpdateEvent(TaskModel model) {
         this.model = model;

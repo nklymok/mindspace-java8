@@ -1,5 +1,9 @@
 package com.nklymok.mindspace.controller;
 
+import animatefx.animation.AnimationFX;
+import animatefx.animation.FadeIn;
+import animatefx.animation.FadeInDown;
+import animatefx.animation.FadeInRight;
 import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.eventsystem.*;
 import com.nklymok.mindspace.model.TaskModel;
@@ -12,7 +16,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
-
+// TODO bugfix when removing task 1, task 2 is removed (Fix removing)
 public class SandboxPaneController implements Initializable, Subscriber {
     private final Map<TaskModel, Node> modelToNode;
 
@@ -46,6 +50,24 @@ public class SandboxPaneController implements Initializable, Subscriber {
             addTask(event.getTaskParent(), event.getModel());
         }
     }
+
+//    @Subscribe void handleTaskAnimationEvent(TaskAnimationEvent event) {
+//        AnimationFX animation;
+//        TaskModel eventModel = event.getModel();
+//        Node node = null;
+//
+//        for (Map.Entry<TaskModel, Node> e : modelToNode.entrySet()) {
+//            if (e.getKey().equals(eventModel)) {
+//                node = e.getValue();
+//                break;
+//            }
+//        }
+//
+//        if (node != null) {
+//            animation = new FadeInDown(node).setSpeed(5d);
+//            animation.play();
+//        }
+//    }
 
     @Subscribe
     private void handleTaskDeleteEvent(TaskDeleteEvent event) {

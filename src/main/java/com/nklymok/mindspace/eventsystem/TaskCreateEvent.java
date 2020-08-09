@@ -7,7 +7,7 @@ import lombok.Getter;
 public class TaskCreateEvent implements Postable {
 
     @Getter
-    private TaskModel model;
+    private final TaskModel model;
     @Getter
     private Parent taskParent;
     @Getter

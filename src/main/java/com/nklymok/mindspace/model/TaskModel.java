@@ -23,11 +23,12 @@ public class TaskModel implements Comparable<TaskModel> {
 
     @Override
     public int compareTo(TaskModel taskModel) {
-        int comparisonResult = this.getPriority().compareTo(taskModel.getPriority());
-        if (comparisonResult == 0) {
-            return this.getDueDate().compareTo(taskModel.getDueDate());
-        }
-
-        return comparisonResult;
+//        int comparisonResult = this.getPriority().compareTo(taskModel.getPriority());
+//        if (comparisonResult == 0) {
+//            return this.getDueDate().compareTo(taskModel.getDueDate());
+//        }
+//
+//        return comparisonResult;
+        return this.getId().compareTo(taskModel.getId());
     }
 }
