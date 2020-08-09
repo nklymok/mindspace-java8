@@ -1,10 +1,8 @@
 package com.nklymok.mindspace.controller;
 
 import com.google.common.eventbus.Subscribe;
-import com.nklymok.mindspace.eventsystem.AppEventBus;
-import com.nklymok.mindspace.eventsystem.Subscriber;
-import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
-import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
+import com.nklymok.mindspace.component.Animations;
+import com.nklymok.mindspace.eventsystem.*;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
@@ -62,6 +60,7 @@ public class RecentItemPaneController implements Initializable, Subscriber {
             stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
             stage.setAlwaysOnTop(true);
             stage.show();
+            stage.setOnHidden(event -> AppEventBus.post(new TaskAnimationEvent(model, Animations.EDITION)));
         } catch (Exception e) {
             e.printStackTrace();
         }

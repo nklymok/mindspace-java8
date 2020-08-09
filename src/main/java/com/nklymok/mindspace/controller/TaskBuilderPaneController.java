@@ -68,6 +68,7 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
 
         try {
             AppEventBus.post(new TaskCreateEvent(taskModel, taskFxmlLoader.load(), recentFxmlLoader.load()));
+            AppEventBus.post(new TaskAnimationEvent(taskModel, Animations.CREATION));
         } catch (IOException e) {
             e.printStackTrace();
         }

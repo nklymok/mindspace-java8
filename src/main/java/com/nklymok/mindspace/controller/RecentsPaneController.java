@@ -1,10 +1,8 @@
 package com.nklymok.mindspace.controller;
 
+import animatefx.animation.AnimationFX;
 import com.google.common.eventbus.Subscribe;
-import com.nklymok.mindspace.eventsystem.AppEventBus;
-import com.nklymok.mindspace.eventsystem.Subscriber;
-import com.nklymok.mindspace.eventsystem.TaskCreateEvent;
-import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
+import com.nklymok.mindspace.eventsystem.*;
 import com.nklymok.mindspace.model.TaskModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +44,26 @@ public class RecentsPaneController implements Initializable, Subscriber {
     @Subscribe
     private void handleTaskDeleteEvent(TaskDeleteEvent event) {
         removeRecent(event.getModel());
+    }
+
+    @Subscribe
+    void handleTaskAnimationEvent(TaskAnimationEvent event) {
+        AnimationFX animation = event.getAnimation();
+        TaskModel eventModel = event.getModel();
+        Node node = null;
+
+        for (Map.Entry<TaskModel, Node> e : modelToNode.entrySet()) {
+            if (e.getKey().equals(eventModel)) {
+                node = e.getValue();
+                break;
+            }
+        }
+
+        if (node != null) {
+            animation.setNode(node);
+            animation.setSpeed(5d);
+            animation.play();
+        }
     }
 
     @FXML

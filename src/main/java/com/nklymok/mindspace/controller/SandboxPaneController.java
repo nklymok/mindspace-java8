@@ -7,6 +7,7 @@ import animatefx.animation.FadeInRight;
 import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.eventsystem.*;
 import com.nklymok.mindspace.model.TaskModel;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -51,23 +52,25 @@ public class SandboxPaneController implements Initializable, Subscriber {
         }
     }
 
-//    @Subscribe void handleTaskAnimationEvent(TaskAnimationEvent event) {
-//        AnimationFX animation;
-//        TaskModel eventModel = event.getModel();
-//        Node node = null;
-//
-//        for (Map.Entry<TaskModel, Node> e : modelToNode.entrySet()) {
-//            if (e.getKey().equals(eventModel)) {
-//                node = e.getValue();
-//                break;
-//            }
-//        }
-//
-//        if (node != null) {
-//            animation = new FadeInDown(node).setSpeed(5d);
-//            animation.play();
-//        }
-//    }
+    @Subscribe
+    void handleTaskAnimationEvent(TaskAnimationEvent event) {
+        AnimationFX animation = event.getAnimation();
+        TaskModel eventModel = event.getModel();
+        Node node = null;
+
+        for (Map.Entry<TaskModel, Node> e : modelToNode.entrySet()) {
+            if (e.getKey().equals(eventModel)) {
+                node = e.getValue();
+                break;
+            }
+        }
+
+        if (node != null) {
+            animation.setNode(node);
+            animation.setSpeed(5d);
+            animation.play();
+        }
+    }
 
     @Subscribe
     private void handleTaskDeleteEvent(TaskDeleteEvent event) {
