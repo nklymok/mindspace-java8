@@ -1,8 +1,10 @@
 package com.nklymok.mindspace.controller;
 
 import com.google.common.eventbus.Subscribe;
-import com.nklymok.mindspace.component.Animations;
-import com.nklymok.mindspace.eventsystem.*;
+import com.nklymok.mindspace.eventsystem.AppEventBus;
+import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
+import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
@@ -21,7 +23,7 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class RecentItemPaneController implements Initializable, Subscriber {
+public class RecentItemPaneController implements Comparable<RecentItemPaneController>, Initializable, Subscriber {
     private final String DUE_PREFIX = "Due: ";
     private TaskModel model;
 
@@ -60,7 +62,6 @@ public class RecentItemPaneController implements Initializable, Subscriber {
             stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
             stage.setAlwaysOnTop(true);
             stage.show();
-            stage.setOnHidden(event -> AppEventBus.post(new TaskAnimationEvent(model, Animations.EDITION)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,5 +107,11 @@ public class RecentItemPaneController implements Initializable, Subscriber {
         updateFields();
         removeButton.setOnAction(removeButtonHandler);
         editButton.setOnAction(editButtonHandler);
+    }
+
+    @Override
+    public int compareTo(RecentItemPaneController recent) {
+        System.out.println("sorting recent");
+        return 0;
     }
 }

@@ -1,5 +1,6 @@
 package com.nklymok.mindspace.eventsystem;
 
+import animatefx.animation.FadeInLeft;
 import com.nklymok.mindspace.model.TaskModel;
 import javafx.scene.Parent;
 import lombok.Getter;

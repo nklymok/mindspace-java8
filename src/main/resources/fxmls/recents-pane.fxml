@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:controller="com.nklymok.mindspace.controller.RecentsPaneController" fx:id="recentsPane" maxWidth="200.0"
+<VBox fx:controller="com.nklymok.mindspace.controller.RecentsPaneController" maxWidth="200.0"
       minWidth="200.0" prefWidth="200.0" styleClass="background" stylesheets="@../styles/RecentsPane_styles.css"
       xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0">
@@ -34,7 +34,7 @@
         </VBox.margin>
     </GridPane>
     <ScrollPane hbarPolicy="NEVER" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
-        <VBox fx:id="recentBox" alignment="TOP_CENTER" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"
+        <VBox fx:id="recentsPane" alignment="TOP_CENTER" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"
               styleClass="background"/>
         <opaqueInsets>
             <Insets/>

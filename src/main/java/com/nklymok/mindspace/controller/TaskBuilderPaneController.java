@@ -1,12 +1,10 @@
 package com.nklymok.mindspace.controller;
 
 import com.google.common.eventbus.Subscribe;
-import com.nklymok.mindspace.component.Animations;
 import com.nklymok.mindspace.component.PriorityComboBox;
 import com.nklymok.mindspace.component.RepetitionComboBox;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
-import com.nklymok.mindspace.eventsystem.TaskAnimationEvent;
 import com.nklymok.mindspace.eventsystem.TaskCreateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
@@ -68,7 +66,6 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
 
         try {
             AppEventBus.post(new TaskCreateEvent(taskModel, taskFxmlLoader.load(), recentFxmlLoader.load()));
-            AppEventBus.post(new TaskAnimationEvent(taskModel, Animations.CREATION));
         } catch (IOException e) {
             e.printStackTrace();
         }

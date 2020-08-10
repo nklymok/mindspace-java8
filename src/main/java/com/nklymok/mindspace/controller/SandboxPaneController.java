@@ -1,13 +1,10 @@
 package com.nklymok.mindspace.controller;
 
-import animatefx.animation.AnimationFX;
-import animatefx.animation.FadeIn;
-import animatefx.animation.FadeInDown;
-import animatefx.animation.FadeInRight;
 import com.google.common.eventbus.Subscribe;
+import com.nklymok.mindspace.component.anim.CreationAnimation;
+import com.nklymok.mindspace.component.anim.DeletionAnimation;
 import com.nklymok.mindspace.eventsystem.*;
 import com.nklymok.mindspace.model.TaskModel;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -49,32 +46,16 @@ public class SandboxPaneController implements Initializable, Subscriber {
     private void handleTaskCreateEvent(TaskCreateEvent event) {
         if (event.getTaskParent() != null) {
             addTask(event.getTaskParent(), event.getModel());
-        }
-    }
-
-    @Subscribe
-    void handleTaskAnimationEvent(TaskAnimationEvent event) {
-        AnimationFX animation = event.getAnimation();
-        TaskModel eventModel = event.getModel();
-        Node node = null;
-
-        for (Map.Entry<TaskModel, Node> e : modelToNode.entrySet()) {
-            if (e.getKey().equals(eventModel)) {
-                node = e.getValue();
-                break;
-            }
-        }
-
-        if (node != null) {
-            animation.setNode(node);
-            animation.setSpeed(5d);
-            animation.play();
+            new CreationAnimation(event.getTaskParent()).play();
         }
     }
 
     @Subscribe
     private void handleTaskDeleteEvent(TaskDeleteEvent event) {
-        removeTask(event.getModel());
+        TaskModel eventModel = event.getModel();
+        DeletionAnimation deletionAnimation = new DeletionAnimation(modelToNode.get(eventModel));
+        deletionAnimation.setOnFinished(e -> removeTask(eventModel));
+        deletionAnimation.play();
     }
 
     private void relocateTaskNode(Node taskNode) {
