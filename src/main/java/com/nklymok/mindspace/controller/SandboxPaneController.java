@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
-// TODO bugfix when removing task 1, task 2 is removed (Fix removing)
+
 public class SandboxPaneController implements Initializable, Subscriber {
     private final Map<TaskModel, Node> modelToNode;
 

@@ -39,7 +39,7 @@ public class RecentsPaneController implements Initializable, Subscriber {
     }
 
     @Subscribe
-    public void handleTaskCreateEvent(TaskCreateEvent event) {
+    private void handleTaskCreateEvent(TaskCreateEvent event) {
         if (event.getTaskParent() != null) {
             addRecent(event.getRecentParent(), event.getModel());
             new CreationAnimation(event.getRecentParent()).play();
