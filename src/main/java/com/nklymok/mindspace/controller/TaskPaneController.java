@@ -144,10 +144,6 @@ public class TaskPaneController implements Initializable, Subscriber {
         priorityPane.setPriority(model.getPriority());
     }
 
-    public TaskModel getModel() {
-        return model;
-    }
-
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
