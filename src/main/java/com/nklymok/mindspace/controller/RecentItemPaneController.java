@@ -24,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class RecentItemPaneController implements Comparable<RecentItemPaneController>, Initializable, Subscriber {
+
     private final String DUE_PREFIX = "Due: ";
     private TaskModel model;
 
@@ -71,10 +72,8 @@ public class RecentItemPaneController implements Comparable<RecentItemPaneContro
     private void handleTaskUpdateEvent(TaskUpdateEvent event) {
         TaskModel eventModel = event.getModel();
         if(this.model.getId().equals(eventModel.getId())) {
-            this.model = eventModel;
+            updateFields();
         }
-
-        updateFields();
     }
 
     private void updateFields() {
@@ -111,7 +110,6 @@ public class RecentItemPaneController implements Comparable<RecentItemPaneContro
 
     @Override
     public int compareTo(RecentItemPaneController recent) {
-        System.out.println("sorting recent");
-        return 0;
+        return recent.getModel().getId().compareTo(this.getModel().getId());
     }
 }
