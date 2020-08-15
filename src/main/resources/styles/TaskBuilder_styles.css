@@ -43,8 +43,8 @@
 	-fx-background-radius: 15px;
 	-fx-border-radius: 15px;
 	-fx-background-color: #FFFFFF;
-	-fx-highlight-fill: #FFFFFF;
-	-fx-highlight-text-fill: #FFFFFF;
+	-fx-highlight-fill: #d4efff;
+	-fx-highlight-text-fill: #0070d0;
 	-fx-font-family: Roboto;
 	-fx-font-style: normal;
 	-fx-font-weight: normal;
@@ -58,7 +58,7 @@
 	-fx-border-radius: 15px;
 	-fx-background-color: #E0E0E0;
 	-fx-control-inner-background: #E0E0E0;
-	-fx-highlight-fill: transparent;
+	-fx-highlight-fill: #d4efff;
 	-fx-highlight-text-fill: #0070d0;
 }
 
@@ -81,7 +81,7 @@
 	-fx-background-radius: 15px;
 	-fx-border-radius: 15px;
 	-fx-control-inner-background: #FFFFFF;
-	-fx-highlight-fill: transparent;
+	-fx-highlight-fill: #d4efff;
 	-fx-highlight-text-fill: #0070d0;
 	-fx-wrap-text: true;
     -fx-text-box-border: #FFFFFF;
@@ -98,7 +98,7 @@
 	-fx-border-radius: 15px;
 	-fx-background-color: #E0E0E0;
 	-fx-control-inner-background: #E0E0E0;
-	-fx-highlight-fill: #E0E0E0;
+	-fx-highlight-fill: #d4efff;
 	-fx-highlight-text-fill: #0070d0;
 	-fx-wrap-text: true;
 }
@@ -183,7 +183,7 @@
 	-fx-border-radius: 15 15 15 15px;
 	-fx-background-radius: 15 15 15 15px;
 	-fx-border-color: #E0E0E0;
-}
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.25, 0.0, 4.0);}
 
 .button-exit {
 	-fx-background-color: transparent;
