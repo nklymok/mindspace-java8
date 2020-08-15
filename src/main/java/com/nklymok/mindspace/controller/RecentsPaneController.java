@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
@@ -25,7 +26,7 @@ public class RecentsPaneController implements Initializable, Subscriber {
     VBox recentsPane;
 
     public RecentsPaneController() {
-        modelToNode = new TreeMap<>();
+        modelToNode = new HashMap<>();
     }
 
     private void addRecent(Node recentNode, TaskModel taskModel) {
