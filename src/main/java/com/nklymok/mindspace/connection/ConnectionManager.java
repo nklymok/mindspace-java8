@@ -1,6 +1,7 @@
 package com.nklymok.mindspace.connection;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
 
 import java.lang.reflect.Method;
 import java.sql.Connection;
@@ -9,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ConnectionManager {
-    private static Logger logger = Logger.getLogger(ConnectionManager.class);
     private static Connection connection;
     private static final String DB_DRIVER = "org.h2.Driver";
     private static final String DB_URL = "jdbc:h2:~/mindspace";
@@ -28,7 +28,6 @@ public class ConnectionManager {
     }
 
     public static Connection openConnection() {
-        logger.info("Connection is being opened");
         if (connection != null) {
             return connection;
         } else {
@@ -38,7 +37,6 @@ public class ConnectionManager {
                 createTable();
                 return connection;
             } catch (ClassNotFoundException | SQLException e) {
-                logger.error("Failed to connect");
                 e.printStackTrace();
             }
             throw new RuntimeException("Failed to connect");
@@ -55,7 +53,6 @@ public class ConnectionManager {
     }
 
     public static void closeConnection() {
-        logger.info("Connection is being closed");
         if (connection != null) {
             try {
                 connection.close();
