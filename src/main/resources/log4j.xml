@@ -1,7 +1,7 @@
 <Configuration status="debug" name="mindspace" packages="com.nklymok.mindspace">
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p %m%n"></PatternLayout>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p %m%n"/>
         </Console>
     </Appenders>
 </Configuration>

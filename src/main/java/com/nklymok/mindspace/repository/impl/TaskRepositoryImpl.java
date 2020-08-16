@@ -3,17 +3,14 @@ package com.nklymok.mindspace.repository.impl;
 import com.nklymok.mindspace.connection.ConnectionManager;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.repository.TaskRepository;
-import org.apache.log4j.Logger;
 
 import java.sql.*;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class TaskRepositoryImpl implements TaskRepository {
 
-    private static final Logger logger = Logger.getLogger(TaskRepositoryImpl.class);
     private static final String SAVE_QUERY = "INSERT INTO tasks(header, description, duedate, priority) VALUES(?,?,?,?)";
     private static final String DELETE_QUERY = "DELETE FROM tasks WHERE id = ?";
     private static final String SELECT_QUERY = "SELECT * FROM tasks WHERE id = ?";
