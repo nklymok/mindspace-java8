@@ -23,6 +23,7 @@ import tornadofx.control.DateTimePicker;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class TaskBuilderPaneController implements Initializable, Subscriber {
@@ -55,6 +56,29 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
         createTask(taskModel);
     };
 
+<<<<<<< Updated upstream
+=======
+    private boolean checkModel(TaskModel taskModel) {
+        boolean result = true;
+        if (StringUtils.isWhitespaceOrEmpty(taskModel.getHeader())) {
+            ErrorEffect.set(fieldHeader);
+            result = false;
+        } else {
+            ErrorEffect.remove(fieldHeader);
+        }
+
+        LocalDateTime timeValue = dateTimePicker.getDateTimeValue();
+        if (timeValue == null || timeValue.toLocalDate().compareTo(LocalDate.now()) < 0) {
+            ErrorEffect.set(dateTimePicker);
+            result = false;
+        } else {
+            ErrorEffect.remove(dateTimePicker);
+        }
+
+        return result;
+    }
+
+>>>>>>> Stashed changes
     private void createTask(TaskModel taskModel) {
         FXMLLoader taskFxmlLoader = new FXMLLoader(getClass().getResource("/fxmls/task-pane.fxml"));
         TaskPaneController taskPaneController = new TaskPaneController(taskModel);
