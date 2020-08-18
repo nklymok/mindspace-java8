@@ -25,6 +25,7 @@ import tornadofx.control.DateTimePicker;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class TaskBuilderPaneController implements Initializable, Subscriber {
@@ -69,7 +70,8 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
             ErrorEffect.remove(fieldHeader);
         }
 
-        if (dateTimePicker.getDateTimeValue() == null) {
+        LocalDateTime timeValue = dateTimePicker.getDateTimeValue();
+        if (timeValue == null || timeValue.toLocalDate().compareTo(LocalDate.now()) < 0) {
             ErrorEffect.set(dateTimePicker);
             result = false;
         } else {
