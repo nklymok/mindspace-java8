@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MindspaceApplication extends Application {
@@ -28,6 +29,8 @@ public class MindspaceApplication extends Application {
         BlurEffect.setTarget(root);
         stage = primaryStage;
         Scene scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        stage.setTitle("Project MindSpace");
+        stage.getIcons().add(new Image(getClass().getResource("/sprites/icon.png").toString()));
         stage.setScene(scene);
         stage.setMinWidth(DEFAULT_WIDTH);
         stage.setMinHeight(DEFAULT_HEIGHT);
