@@ -18,7 +18,6 @@ public class DeadlineThread extends Thread {
             try {
                 sleep(1000);
                 taskService.findAll().stream().filter(TaskModel::isExpired).forEach((e -> {
-                    System.out.println(e.getHeader() + " should be deleted");
                     AppEventBus.post(new TaskDeleteEvent(e));
                 }));
             } catch (InterruptedException e) {

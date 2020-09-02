@@ -97,12 +97,12 @@
                         <Insets left="10.0" />
                     </GridPane.margin>
                 </DateTimePicker>
-                <FontIcon iconLiteral="mdi-repeat" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                <FontIcon iconLiteral="mdi-repeat" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
                         <Insets left="10.0" />
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Repeat" GridPane.rowIndex="7">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Repeat" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                     <font>
                         <Font size="8.0" />
                     </font>
@@ -121,12 +121,12 @@
                         <Insets left="10.0" />
                     </GridPane.margin>
                 </RepetitionComboBox>
-                <FontIcon iconLiteral="mdi-alert-circle-outline" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                <FontIcon iconLiteral="mdi-alert-circle-outline" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
                         <Insets left="10.0" />
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Priority" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Priority" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
                         <Insets left="25.0" />
                     </GridPane.margin>

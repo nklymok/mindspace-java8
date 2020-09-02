@@ -7,5 +7,6 @@
     <children>
         <fx:include source="/fxmls/taskbuilder-pane.fxml" VBox.vgrow="ALWAYS" fx:id="taskBuilderPane"/>
         <fx:include source="/fxmls/recents-pane.fxml" VBox.vgrow="ALWAYS" fx:id="recentsPane"/>
+        <fx:include source="/fxmls/tools-pane.fxml" VBox.vgrow="NEVER" fx:id="toolsPane"/>
     </children>
 </VBox>

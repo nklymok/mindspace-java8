@@ -15,12 +15,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tornadofx.control.DateTimePicker;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EditStageController implements Initializable, Subscriber {
@@ -97,5 +99,16 @@ public class EditStageController implements Initializable, Subscriber {
         exitButton.setOnAction(exitButtonHandler);
         saveAndExitButton.setOnAction(saveAndExitButtonHandler);
         priorityComboBox.setOnAction(this::priorityComboBoxAction);
+
+        // setting passed calendar day cells to disabled & custom styles
+        dateTimePicker.setDayCellFactory(datePicker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                if (empty || date.compareTo(LocalDate.now()) < 0) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #F4B4B4;");
+                }
+            }
+        });
     }
 }

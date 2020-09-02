@@ -55,6 +55,7 @@ public class MindspaceApplication extends Application {
     }
 
     public static void main(String[] args) {
+        System.setProperty("prism.allowhidpi", "false");
         launch(args);
     }
 }
