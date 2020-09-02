@@ -1,5 +1,6 @@
 package com.nklymok.mindspace;
 
+import com.nklymok.mindspace.concurrent.DeadlineThread;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.TaskCreateEvent;
 import com.nklymok.mindspace.model.TaskModel;
@@ -14,10 +15,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MindspaceApplication extends Application {
-    private final double DEFAULT_WIDTH = 800d;
-    private final double DEFAULT_HEIGHT = 600d;
-
-    TaskService taskService;
+    private TaskService taskService;
 
     private Parent root;
     private Stage stage;
@@ -28,6 +26,10 @@ public class MindspaceApplication extends Application {
         root = loader.load(getClass().getResource("/fxmls/root-pane.fxml").openStream());
         BlurEffect.setTarget(root);
         stage = primaryStage;
+
+        double DEFAULT_WIDTH = 800d;
+        double DEFAULT_HEIGHT = 600d;
+
         Scene scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         stage.setTitle("Project MindSpace");
         stage.getIcons().add(new Image(getClass().getResource("/sprites/icon.png").toString()));
@@ -40,6 +42,10 @@ public class MindspaceApplication extends Application {
     public void initialize() {
         taskService = TaskServiceImpl.getInstance();
         createPreviouslyExistedTasks();
+
+        DeadlineThread deadlineThread = new DeadlineThread(taskService);
+        deadlineThread.setDaemon(true);
+        deadlineThread.start();
     }
 
     public void createPreviouslyExistedTasks() {

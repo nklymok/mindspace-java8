@@ -9,6 +9,7 @@ import com.nklymok.mindspace.eventsystem.TaskCreateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
+import com.nklymok.mindspace.view.effect.ErrorEffect;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.h2.util.StringUtils;
 import tornadofx.control.DateTimePicker;
 
 import java.io.IOException;
@@ -52,12 +54,13 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
                 .dueDate(dateTimePicker.getDateTimeValue())
                 .priority(comboBoxIndicatorPane.getIntValue())
                 .build();
+        if (!checkModel(taskModel)) {
+            return;
+        }
         taskModel = taskService.save(taskModel);
         createTask(taskModel);
     };
 
-<<<<<<< Updated upstream
-=======
     private boolean checkModel(TaskModel taskModel) {
         boolean result = true;
         if (StringUtils.isWhitespaceOrEmpty(taskModel.getHeader())) {
@@ -78,7 +81,6 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
         return result;
     }
 
->>>>>>> Stashed changes
     private void createTask(TaskModel taskModel) {
         FXMLLoader taskFxmlLoader = new FXMLLoader(getClass().getResource("/fxmls/task-pane.fxml"));
         TaskPaneController taskPaneController = new TaskPaneController(taskModel);
