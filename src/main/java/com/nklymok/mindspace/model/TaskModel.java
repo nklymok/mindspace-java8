@@ -1,9 +1,10 @@
 package com.nklymok.mindspace.model;
 
 import com.google.common.primitives.Longs;
-import com.sun.istack.internal.NotNull;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -23,6 +24,10 @@ public class TaskModel implements Comparable<TaskModel> {
         this.priority = priority;
     }
 
+    public boolean isExpired() {
+        return dueDate.toLocalDate().compareTo(LocalDate.now()) < 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof TaskModel)) {
@@ -39,12 +44,6 @@ public class TaskModel implements Comparable<TaskModel> {
 
     @Override
     public int compareTo(TaskModel taskModel) {
-//        int comparisonResult = this.getPriority().compareTo(taskModel.getPriority());
-//        if (comparisonResult == 0) {
-//            return this.getDueDate().compareTo(taskModel.getDueDate());
-//        }
-//
-//        return comparisonResult;
         if (this.equals(taskModel)) {
             return 0;
         }
@@ -57,4 +56,6 @@ public class TaskModel implements Comparable<TaskModel> {
 
         return comparisonResult;
     }
+
+
 }

@@ -22,7 +22,7 @@ public class AppEventBus {
         eventBus.register(subscriber);
     }
 
-    public static void post(Postable event) {
+    public static synchronized void post(Postable event) {
         eventBus.post(event);
     }
 }
