@@ -1,28 +1,37 @@
 package com.nklymok.mindspace.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ArchiveStageController implements Initializable {
-
+public class SettingsStageController implements Initializable {
     @FXML
-    private Hyperlink emptyAllHL;
+    private Button aboutButton;
+    @FXML
+    private JFXComboBox<String> languageComboBox;
     @FXML
     private Button exitButton;
 
-    EventHandler<ActionEvent> htEmptyAllHandler = new EventHandler<ActionEvent>() {
+    private EventHandler<ActionEvent> aboutButtonHandler = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("Emptying the list");
+            try {
+                Desktop.getDesktop().browse(new URL("https://github.com/knazariy/mindspace-java8").toURI());
+                exitButton.fire();
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
         }
     };
 
@@ -34,7 +43,7 @@ public class ArchiveStageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        emptyAllHL.setOnAction(htEmptyAllHandler);
+        aboutButton.setOnAction(aboutButtonHandler);
         exitButton.setOnAction(exitButtonHandler);
     }
 }

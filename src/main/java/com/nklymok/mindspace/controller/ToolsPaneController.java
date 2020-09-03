@@ -24,14 +24,13 @@ public class ToolsPaneController implements Initializable {
     private final EventHandler<ActionEvent> settingsButtonHandler = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("Settings handler works");
+            openSettings();
         }
     };
 
     private final EventHandler<ActionEvent> archiveButtonHandler = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("Archive handler works");
             openArchive();
         }
     };
@@ -50,6 +49,22 @@ public class ToolsPaneController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+    }
+
+    private void openSettings() {
+        FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/settings-stage.fxml"));
+        Stage stage = new Stage(StageStyle.TRANSPARENT);
+        try {
+            Scene settingsScene = new Scene(editStageFXMLLoader.load());
+            settingsScene.setFill(Color.TRANSPARENT);
+            stage.setScene(settingsScene);
+            stage.setOnShown(event -> BlurEffect.getInstance().blur());
+            stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
+            stage.setAlwaysOnTop(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

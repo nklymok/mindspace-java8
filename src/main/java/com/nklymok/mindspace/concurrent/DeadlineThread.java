@@ -1,5 +1,6 @@
 package com.nklymok.mindspace.concurrent;
 
+import com.nklymok.mindspace.connection.ConnectionManager;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
 import com.nklymok.mindspace.model.TaskModel;
@@ -14,12 +15,15 @@ public class DeadlineThread extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (!ConnectionManager.isClosed()) {
             try {
-                sleep(1000);
-                taskService.findAll().stream().filter(TaskModel::isExpired).forEach((e -> {
-                    AppEventBus.post(new TaskDeleteEvent(e));
-                }));
+                sleep(500);
+                if (!ConnectionManager.isClosed()) {
+                    taskService
+                            .findAll()
+                            .stream()
+                            .filter(TaskModel::isExpired).forEach((e -> AppEventBus.post(new TaskDeleteEvent(e))));
+                }
             } catch (InterruptedException e) {
                 e.getMessage();
             }

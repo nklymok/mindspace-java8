@@ -1,9 +1,5 @@
 package com.nklymok.mindspace.connection;
 
-import org.apache.logging.log4j.core.Logger;
-import org.apache.logging.log4j.core.LoggerContext;
-
-import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,6 +19,8 @@ public class ConnectionManager {
             "    priority INT NOT NULL\n" +
             ");";
 
+    private static boolean closed = false;
+
     private ConnectionManager() {
 
     }
@@ -34,6 +32,7 @@ public class ConnectionManager {
             try {
                 Class.forName(DB_DRIVER);
                 connection = DriverManager.getConnection(DB_URL, DB_USERNAME,DB_PASSWORD);
+                closed = false;
                 createTable();
                 return connection;
             } catch (ClassNotFoundException | SQLException e) {
@@ -55,10 +54,15 @@ public class ConnectionManager {
     public static void closeConnection() {
         if (connection != null) {
             try {
+                closed = true;
                 connection.close();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
+    }
+
+    public static boolean isClosed() {
+        return closed;
     }
 }

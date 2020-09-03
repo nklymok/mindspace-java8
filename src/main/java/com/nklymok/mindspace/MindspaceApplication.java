@@ -1,6 +1,7 @@
 package com.nklymok.mindspace;
 
 import com.nklymok.mindspace.concurrent.DeadlineThread;
+import com.nklymok.mindspace.connection.ConnectionManager;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.TaskCreateEvent;
 import com.nklymok.mindspace.model.TaskModel;
@@ -31,6 +32,10 @@ public class MindspaceApplication extends Application {
         double DEFAULT_HEIGHT = 600d;
 
         Scene scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+
+        stage.setOnCloseRequest(e -> {
+            ConnectionManager.closeConnection();
+        });
         stage.setTitle("Project MindSpace");
         stage.getIcons().add(new Image(getClass().getResource("/sprites/icon.png").toString()));
         stage.setScene(scene);
@@ -55,7 +60,6 @@ public class MindspaceApplication extends Application {
     }
 
     public static void main(String[] args) {
-        System.setProperty("prism.allowhidpi", "false");
         launch(args);
     }
 }
