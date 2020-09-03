@@ -16,136 +16,176 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import tornadofx.control.DateTimePicker?>
 
-<BorderPane maxHeight="350.0" maxWidth="200.0" minHeight="350.0" minWidth="200.0" prefHeight="350.0" prefWidth="200.0" styleClass="editor-background" stylesheets="@../styles/TaskBuilder_styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="350.0" maxWidth="200.0" minHeight="350.0" minWidth="200.0" prefHeight="350.0" prefWidth="200.0"
+            styleClass="editor-background" stylesheets="@../styles/TaskBuilder_styles.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <center>
-        <GridPane maxHeight="350.0" maxWidth="200.0" minHeight="350.0" minWidth="200.0" prefHeight="350.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <GridPane maxHeight="350.0" maxWidth="200.0" minHeight="350.0" minWidth="200.0" prefHeight="350.0"
+                  prefWidth="200.0" BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="12.0" minHeight="12.0" prefHeight="12.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="12.0" minHeight="12.0" prefHeight="12.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="12.0" minHeight="12.0" prefHeight="12.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="12.0" minHeight="12.0" prefHeight="12.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="12.0" minHeight="12.0" prefHeight="12.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="12.0" minHeight="12.0" prefHeight="12.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Task info" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Task info"
+                      GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                     <GridPane.margin>
-                        <Insets />
+                        <Insets/>
                     </GridPane.margin>
                 </Text>
-                <Button id="saveAndExitButton" fx:id="saveAndExitButton" alignment="CENTER" maxHeight="25.0" maxWidth="80.0" minHeight="25.0" minWidth="80.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="button-edit" text="Edit" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                <Button id="saveAndExitButton" fx:id="saveAndExitButton" alignment="CENTER" maxHeight="25.0"
+                        maxWidth="80.0" minHeight="25.0" minWidth="80.0" mnemonicParsing="false" prefHeight="25.0"
+                        prefWidth="80.0" styleClass="button-edit" text="Edit" textAlignment="CENTER"
+                        GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9"
+                        GridPane.valignment="CENTER">
                     <graphic>
-                        <FontIcon iconLiteral="fa-edit" iconSize="16" text="" />
+                        <FontIcon iconLiteral="fa-edit" iconSize="16" text=""/>
                     </graphic>
                 </Button>
-                <FontIcon iconLiteral="mdi-label-outline" text="" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                <FontIcon iconLiteral="mdi-label-outline" text="" GridPane.halignment="LEFT" GridPane.rowIndex="1"
+                          GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Header" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Header" GridPane.halignment="LEFT"
+                      GridPane.rowIndex="1" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets left="25.0" />
+                        <Insets left="25.0"/>
                     </GridPane.margin>
                 </Text>
-                <TextField id="fieldHeader" fx:id="fieldHeader" maxHeight="25.0" maxWidth="180.0" minHeight="25.0" minWidth="180.0" prefHeight="25.0" prefWidth="180.0" promptText="Header Text" styleClass="txtfield-editor" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                <TextField id="fieldHeader" fx:id="fieldHeader" maxHeight="25.0" maxWidth="180.0" minHeight="25.0"
+                           minWidth="180.0" prefHeight="25.0" prefWidth="180.0" promptText="Header Text"
+                           styleClass="txtfield-editor" GridPane.halignment="LEFT" GridPane.rowIndex="2"
+                           GridPane.valignment="CENTER">
                     <padding>
-                        <Insets top="5.0" />
+                        <Insets top="5.0"/>
                     </padding>
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </TextField>
-                <FontIcon iconLiteral="mdi-clipboard-text" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <FontIcon iconLiteral="mdi-clipboard-text" GridPane.halignment="LEFT" GridPane.rowIndex="3"
+                          GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Description" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Description"
+                      GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets left="25.0" />
+                        <Insets left="25.0"/>
                     </GridPane.margin>
                 </Text>
-                <TextArea id="fieldDescription" fx:id="fieldDescription" maxHeight="80.0" maxWidth="180.0" minHeight="80.0" minWidth="180.0" prefHeight="80.0" prefWidth="180.0" promptText="Description Text" styleClass="txtarea-editor" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                <TextArea id="fieldDescription" fx:id="fieldDescription" maxHeight="80.0" maxWidth="180.0"
+                          minHeight="80.0" minWidth="180.0" prefHeight="80.0" prefWidth="180.0"
+                          promptText="Description Text" styleClass="txtarea-editor" GridPane.halignment="LEFT"
+                          GridPane.rowIndex="4" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </TextArea>
-                <FontIcon iconLiteral="mdi-calendar-blank" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                <FontIcon iconLiteral="mdi-calendar-blank" GridPane.halignment="LEFT" GridPane.rowIndex="5"
+                          GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Due Date" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Due Date"
+                      GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                     <font>
-                        <Font size="8.0" />
+                        <Font size="8.0"/>
                     </font>
                     <GridPane.margin>
-                        <Insets left="25.0" />
+                        <Insets left="25.0"/>
                     </GridPane.margin>
                 </Text>
-                <DateTimePicker id="dateTimePicker" fx:id="dateTimePicker" format="dd MMM uuuu HH:mm" maxHeight="18.0" maxWidth="180.0" minHeight="18.0" minWidth="180.0" prefHeight="18.0" prefWidth="180.0" styleClass="date-picker-editor" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                <DateTimePicker id="dateTimePicker" fx:id="dateTimePicker" format="dd MMM uuuu HH:mm" maxHeight="18.0"
+                                maxWidth="180.0" minHeight="18.0" minWidth="180.0" prefHeight="18.0" prefWidth="180.0"
+                                styleClass="date-picker-editor" GridPane.halignment="LEFT" GridPane.rowIndex="6"
+                                GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </DateTimePicker>
-                <FontIcon iconLiteral="mdi-repeat" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                <FontIcon iconLiteral="mdi-repeat" GridPane.halignment="LEFT" GridPane.rowIndex="7"
+                          GridPane.valignment="BOTTOM">
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Repeat" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Repeat"
+                      GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                     <font>
-                        <Font size="8.0" />
+                        <Font size="8.0"/>
                     </font>
                     <GridPane.margin>
-                        <Insets left="25.0" />
+                        <Insets left="25.0"/>
                     </GridPane.margin>
                 </Text>
-                <RepetitionComboBox id="repetitionComboBox" fx:id="repetitionComboBox" maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" promptText="Daily" GridPane.halignment="LEFT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                <RepetitionComboBox id="repetitionComboBox" fx:id="repetitionComboBox" maxHeight="20.0" maxWidth="80.0"
+                                    minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0"
+                                    promptText="Daily" GridPane.halignment="LEFT" GridPane.rowIndex="8"
+                                    GridPane.valignment="CENTER">
                     <opaqueInsets>
-                        <Insets />
+                        <Insets/>
                     </opaqueInsets>
                     <padding>
-                        <Insets top="-1.0" />
+                        <Insets top="-1.0"/>
                     </padding>
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </RepetitionComboBox>
-                <FontIcon iconLiteral="mdi-alert-circle-outline" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                <FontIcon iconLiteral="mdi-alert-circle-outline" GridPane.columnIndex="1" GridPane.halignment="LEFT"
+                          GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Priority" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Priority"
+                      GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7"
+                      GridPane.valignment="BOTTOM">
                     <GridPane.margin>
-                        <Insets left="25.0" />
+                        <Insets left="25.0"/>
                     </GridPane.margin>
                 </Text>
-                <PriorityComboBox id="priorityComboBox" fx:id="priorityComboBox" maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                <PriorityComboBox id="priorityComboBox" fx:id="priorityComboBox" maxHeight="15.0" maxWidth="15.0"
+                                  minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                                  GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8"
+                                  GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets />
+                        <Insets/>
                     </GridPane.margin>
                 </PriorityComboBox>
-                <PriorityPaneController id="comboBoxIndicatorPane" fx:id="comboBoxIndicatorPane" maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0" styleClass="no-priority-indicator" stylesheets="@../styles/priority_styles.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                <PriorityPaneController id="comboBoxIndicatorPane" fx:id="comboBoxIndicatorPane" maxHeight="15.0"
+                                        maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                                        prefWidth="15.0" styleClass="no-priority-indicator"
+                                        stylesheets="@../styles/priority_styles.css" GridPane.columnIndex="1"
+                                        GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets right="40.0" />
+                        <Insets right="40.0"/>
                     </GridPane.margin>
                 </PriorityPaneController>
-            <Button fx:id="exitButton" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="button-exit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-               <graphic>
-                        <FontIcon id="closeButton" iconLiteral="fa-close" iconSize="16" />
-               </graphic>
-            </Button>
+                <Button fx:id="exitButton" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0"
+                        mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="button-exit"
+                        GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                    <graphic>
+                        <FontIcon id="closeButton" iconLiteral="fa-close" iconSize="16"/>
+                    </graphic>
+                </Button>
             </children>
         </GridPane>
     </center>
