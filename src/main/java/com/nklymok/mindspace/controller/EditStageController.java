@@ -25,6 +25,14 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+//TODO
+// high-dpi bat file script (check pinned) - SOLVED
+// fill archive -
+// localization -
+// repeats -
+// readme -
+// release -
+
 public class EditStageController implements Initializable, Subscriber {
     @FXML
     private Button exitButton;
