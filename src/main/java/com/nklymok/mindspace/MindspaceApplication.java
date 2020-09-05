@@ -1,5 +1,6 @@
 package com.nklymok.mindspace;
 
+import com.nklymok.mindspace.component.ResourceBundles;
 import com.nklymok.mindspace.concurrent.DeadlineThread;
 import com.nklymok.mindspace.connection.ConnectionManager;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
@@ -15,6 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class MindspaceApplication extends Application {
     private TaskService taskService;
 
@@ -23,8 +27,8 @@ public class MindspaceApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        root = loader.load(getClass().getResource("/fxmls/root-pane.fxml").openStream());
+        ResourceBundle bundle = ResourceBundles.getResourceBundle();
+        root = FXMLLoader.load(getClass().getResource("/fxmls/root-pane.fxml"), bundle);
         BlurEffect.setTarget(root);
         stage = primaryStage;
 
@@ -60,6 +64,7 @@ public class MindspaceApplication extends Application {
     }
 
     public static void main(String[] args) {
+        Locale.setDefault(ResourceBundles.getCurrentLocale());
         launch(args);
     }
 }

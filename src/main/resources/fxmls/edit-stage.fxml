@@ -39,7 +39,7 @@
                 <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Task info"
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="%editor_header"
                       GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                     <GridPane.margin>
                         <Insets/>
@@ -47,7 +47,7 @@
                 </Text>
                 <Button id="saveAndExitButton" fx:id="saveAndExitButton" alignment="CENTER" maxHeight="25.0"
                         maxWidth="80.0" minHeight="25.0" minWidth="80.0" mnemonicParsing="false" prefHeight="25.0"
-                        prefWidth="80.0" styleClass="button-edit" text="Edit" textAlignment="CENTER"
+                        prefWidth="80.0" styleClass="button-edit" text="%editor_edit" textAlignment="CENTER"
                         GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9"
                         GridPane.valignment="CENTER">
                     <graphic>
@@ -60,7 +60,7 @@
                         <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Header" GridPane.halignment="LEFT"
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="%tb_t_header" GridPane.halignment="LEFT"
                       GridPane.rowIndex="1" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets left="25.0"/>
@@ -83,7 +83,7 @@
                         <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Description"
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="%tb_t_desc"
                       GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets left="25.0"/>
@@ -103,7 +103,7 @@
                         <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Due Date"
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="%tb_t_duedate"
                       GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                     <font>
                         <Font size="8.0"/>
@@ -126,7 +126,7 @@
                         <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Repeat"
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="%tb_t_repeat"
                       GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                     <font>
                         <Font size="8.0"/>
@@ -155,7 +155,7 @@
                         <Insets left="10.0"/>
                     </GridPane.margin>
                 </FontIcon>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="Priority"
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-label" text="%tb_t_priority"
                       GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7"
                       GridPane.valignment="BOTTOM">
                     <GridPane.margin>

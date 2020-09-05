@@ -1,5 +1,6 @@
 package com.nklymok.mindspace.controller;
 
+import com.nklymok.mindspace.component.ResourceBundles;
 import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,23 +37,31 @@ public class ToolsPaneController implements Initializable {
     };
 
     private void openArchive() {
-            FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/archive-stage.fxml"));
-            Stage stage = new Stage(StageStyle.TRANSPARENT);
-            try {
-                Scene archiveScene = new Scene(editStageFXMLLoader.load());
-                archiveScene.setFill(Color.TRANSPARENT);
-                stage.setScene(archiveScene);
-                stage.setOnShown(event -> BlurEffect.getInstance().blur());
-                stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
-                stage.setAlwaysOnTop(true);
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        ResourceBundle resourceBundle = ResourceBundles.getResourceBundle();
+        FXMLLoader editStageFXMLLoader = new FXMLLoader(
+                getClass().getResource("/fxmls/archive-stage.fxml"),
+                resourceBundle);
+
+        Stage stage = new Stage(StageStyle.TRANSPARENT);
+        try {
+            Scene archiveScene = new Scene(editStageFXMLLoader.load());
+            archiveScene.setFill(Color.TRANSPARENT);
+            stage.setScene(archiveScene);
+            stage.setOnShown(event -> BlurEffect.getInstance().blur());
+            stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
+            stage.setAlwaysOnTop(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void openSettings() {
-        FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/settings-stage.fxml"));
+        ResourceBundle resourceBundle = ResourceBundles.getResourceBundle();
+        FXMLLoader editStageFXMLLoader = new FXMLLoader(
+                getClass().getResource("/fxmls/settings-stage.fxml"),
+                resourceBundle);
+
         Stage stage = new Stage(StageStyle.TRANSPARENT);
         try {
             Scene settingsScene = new Scene(editStageFXMLLoader.load());

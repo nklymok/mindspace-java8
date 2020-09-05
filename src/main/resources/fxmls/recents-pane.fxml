@@ -23,7 +23,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Recents" textAlignment="RIGHT"
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="%r_header" textAlignment="RIGHT"
               GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <GridPane.margin>
                 <Insets bottom="20.0"/>
