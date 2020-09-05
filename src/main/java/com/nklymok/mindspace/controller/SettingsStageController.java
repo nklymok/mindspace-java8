@@ -1,25 +1,31 @@
 package com.nklymok.mindspace.controller;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.nklymok.mindspace.component.LanguageComboBox;
+import com.nklymok.mindspace.component.ResourceBundles;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class SettingsStageController implements Initializable {
     @FXML
     private Button aboutButton;
     @FXML
-    private JFXComboBox<String> languageComboBox;
+    private LanguageComboBox languageComboBox;
     @FXML
     private Button exitButton;
 
@@ -41,8 +47,13 @@ public class SettingsStageController implements Initializable {
         stage.close();
     };
 
+    private final EventHandler<ActionEvent> comboBoxHandler = event -> {
+        ResourceBundles.setLocale(languageComboBox.getLocale());
+    };
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        languageComboBox.setOnAction(comboBoxHandler);
         aboutButton.setOnAction(aboutButtonHandler);
         exitButton.setOnAction(exitButtonHandler);
     }

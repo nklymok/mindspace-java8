@@ -1,6 +1,7 @@
 package com.nklymok.mindspace.controller;
 
 import com.google.common.eventbus.Subscribe;
+import com.nklymok.mindspace.component.ResourceBundles;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
 import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
@@ -50,7 +51,11 @@ public class RecentItemPaneController implements Comparable<RecentItemPaneContro
     }
 
     private void edit() {
-        FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/edit-stage.fxml"));
+        ResourceBundle resourceBundle = ResourceBundles.getResourceBundle();
+        FXMLLoader editStageFXMLLoader = new FXMLLoader(
+                getClass().getResource("/fxmls/edit-stage.fxml"),
+                resourceBundle);
+
         EditStageController editStageController = new EditStageController(model);
         editStageFXMLLoader.setController(editStageController);
 
@@ -71,7 +76,7 @@ public class RecentItemPaneController implements Comparable<RecentItemPaneContro
     @Subscribe
     private void handleTaskUpdateEvent(TaskUpdateEvent event) {
         TaskModel eventModel = event.getModel();
-        if(this.model.getId().equals(eventModel.getId())) {
+        if (this.model.getId().equals(eventModel.getId())) {
             updateFields();
         }
     }
@@ -87,7 +92,8 @@ public class RecentItemPaneController implements Comparable<RecentItemPaneContro
     }
 
     private void updateDueText() {
-        dueText.setText(DUE_PREFIX + model.getDueDate().format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm")));
+        dueText.setText(DUE_PREFIX + model.getDueDate().format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm",
+                ResourceBundles.getCurrentLocale())));
     }
 
     private void updatePriority() {

@@ -1,6 +1,7 @@
 package com.nklymok.mindspace.controller;
 
 import com.google.common.eventbus.Subscribe;
+import com.nklymok.mindspace.component.ResourceBundles;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
 import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
@@ -84,12 +85,15 @@ public class TaskPaneController implements Initializable, Subscriber {
     }
 
     private void edit() {
-        FXMLLoader editStageFXMLLoader = new FXMLLoader(getClass().getResource("/fxmls/edit-stage.fxml"));
+        ResourceBundle resourceBundle = ResourceBundles.getResourceBundle();
+        FXMLLoader editStageFXMLLoader = new FXMLLoader(
+                getClass().getResource("/fxmls/edit-stage.fxml"),
+                resourceBundle);
+
         EditStageController editStageController = new EditStageController(model);
         editStageFXMLLoader.setController(editStageController);
 
         Stage stage = new Stage(StageStyle.TRANSPARENT);
-        stage.setAlwaysOnTop(true);
         try {
             Scene editScene = new Scene(editStageFXMLLoader.load());
             editScene.setFill(Color.TRANSPARENT);
@@ -137,7 +141,8 @@ public class TaskPaneController implements Initializable, Subscriber {
     }
 
     private void updateDueDate() {
-        dueText.setText(model.getDueDate().format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm")));
+        dueText.setText(model.getDueDate().format(DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm",
+                ResourceBundles.getCurrentLocale())));
     }
 
     private void updatePriority() {

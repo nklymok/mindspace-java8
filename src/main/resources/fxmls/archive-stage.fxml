@@ -20,19 +20,19 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Archive" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="%archive_header" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin>
         </Text>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Tasks auto-delete 7 days after in Archive" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="%archive_desc" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets left="5.0" />
             </GridPane.margin>
         </Text>
         <Hyperlink fx:id="emptyAllHL" styleClass="text-deleteall" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
             <graphic>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-deleteall" text="Empty now?" underline="true" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-deleteall" text="%archive_empty_hl" underline="true" />
             </graphic>
             <GridPane.margin>
                 <Insets right="5.0" />
