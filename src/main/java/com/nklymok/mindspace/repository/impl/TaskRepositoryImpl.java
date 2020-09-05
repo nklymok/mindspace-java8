@@ -4,28 +4,54 @@ import com.nklymok.mindspace.connection.ConnectionManager;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.repository.TaskRepository;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
 public class TaskRepositoryImpl implements TaskRepository {
 
-    private static final String SAVE_QUERY = "INSERT INTO tasks(header, description, duedate, priority) VALUES(?,?,?,?)";
-    private static final String DELETE_QUERY = "DELETE FROM tasks WHERE id = ?";
-    private static final String SELECT_QUERY = "SELECT * FROM tasks WHERE id = ?";
-    private static final String SELECT_ALL_QUERY = "SELECT * FROM tasks";
-    private static final String UPDATE_QUERY = "UPDATE tasks " +
-            "SET header = ?, description = ?, duedate = ?, priority = ? WHERE id = ?";
+//    private static final String SAVE_QUERY = "INSERT INTO tasks(header, description, duedate, priority) VALUES(?,?,?,?)";
+//    private static final String DELETE_QUERY = "DELETE FROM tasks WHERE id = ?";
+//    private static final String SELECT_QUERY = "SELECT * FROM tasks WHERE id = ?";
+//    private static final String SELECT_ALL_QUERY = "SELECT * FROM tasks";
+//    private static final String UPDATE_QUERY = "UPDATE tasks " +
+//            "SET header = ?, description = ?, duedate = ?, priority = ? WHERE id = ?";
+    private static String SAVE_QUERY;
+    private static String DELETE_QUERY;
+    private static String SELECT_QUERY;
+    private static String SELECT_ALL_QUERY;
+    private static String UPDATE_QUERY;
 
     private final Connection CONNECTION;
+    private final Properties properties = new Properties();
 
     private TaskRepositoryImpl() {
-        CONNECTION = ConnectionManager.openConnection();
+        CONNECTION = ConnectionManager.getInstance().openConnection();
+
+        try {
+            properties.load(new FileInputStream(new File(this.getClass().getResource("/sql.properties").toURI())));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+            ConnectionManager.closeConnection();
+            System.exit(-1);
+        }
+
+        SAVE_QUERY = properties.getProperty("sql.save");
+        DELETE_QUERY = properties.getProperty("sql.delete");
+        SELECT_QUERY = properties.getProperty("sql.select");
+        SELECT_ALL_QUERY = properties.getProperty("sql.selectall");
+        UPDATE_QUERY = properties.getProperty("sql.update");
     }
 
     private static class TaskRepositoryImplHelper {
-        private static final TaskRepositoryImpl INSTANCE = new TaskRepositoryImpl();
+        private static final TaskRepositoryImpl INSTANCE = new TasksRepositoryImpl();
     }
 
     public static TaskRepositoryImpl getInstance() {
