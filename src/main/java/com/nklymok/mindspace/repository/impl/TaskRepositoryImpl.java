@@ -51,7 +51,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     private static class TaskRepositoryImplHelper {
-        private static final TaskRepositoryImpl INSTANCE = new TasksRepositoryImpl();
+        private static final TaskRepositoryImpl INSTANCE = new TaskRepositoryImpl();
     }
 
     public static TaskRepositoryImpl getInstance() {
