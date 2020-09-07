@@ -15,27 +15,19 @@ All you have to do is make up a header for it!
 <br/>
 
 - Beautiful
-
 - Minimalistic Design
-
 - Multiple Language support
-
 - Easy to create and edit tasks
-
 - Archiving no longer used tasks
-
 - Automatic task sorting by importance
-
 - Deadlines
-
 - Repeats
-
 - Lightweight
-
 - Fast
-
 - Other features yet to be implemented!
 
-## Setup
+## Installation and Setup
 <br/>
-TBA
+
+1. Install the Setup package [here](https://drive.google.com/uc?export=download&id=1lY7VcFQlnk5N9OOmBUp4g7T3cOgL5vsx)
+2. Follow the instructions

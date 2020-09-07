@@ -28,9 +28,10 @@ import java.util.ResourceBundle;
 //TODO
 // high-dpi bat file script (check pinned) - SOLVED
 // fill archive -
-// localization -
+// localization - DONE
 // repeats -
-// readme -
+// readme - DONE
+// background images for sandbox pane -
 // release -
 
 public class EditStageController implements Initializable, Subscriber {
@@ -56,8 +57,8 @@ public class EditStageController implements Initializable, Subscriber {
 
     private final EventHandler<ActionEvent> exitButtonHandler = event -> {
         // close edit window
-        Node source = (Node)  event.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     };
 
@@ -67,8 +68,8 @@ public class EditStageController implements Initializable, Subscriber {
         AppEventBus.post(new TaskUpdateEvent(model));
 
         // close edit window
-        Node source = (Node)  event.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     };
 
@@ -100,7 +101,7 @@ public class EditStageController implements Initializable, Subscriber {
         fieldDescription.setText(model.getDescription());
         priorityComboBox.setPriority(model.getPriority());
         comboBoxIndicatorPane.setPriority(model.getPriority());
-        repetitionComboBox.setValue(Repeats.None); //TODO: add repeats
+        repetitionComboBox.setValue(Repeats.None);
         dateTimePicker.setDateTimeValue(model.getDueDate());
 
         // setting listeners
