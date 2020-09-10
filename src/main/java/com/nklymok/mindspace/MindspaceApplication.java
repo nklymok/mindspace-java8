@@ -1,10 +1,11 @@
 package com.nklymok.mindspace;
 
+import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.component.ResourceBundles;
 import com.nklymok.mindspace.concurrent.DeadlineThread;
 import com.nklymok.mindspace.connection.ConnectionManager;
-import com.nklymok.mindspace.eventsystem.AppEventBus;
-import com.nklymok.mindspace.eventsystem.TaskCreateEvent;
+import com.nklymok.mindspace.controller.EditStageController;
+import com.nklymok.mindspace.eventsystem.*;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
@@ -14,7 +15,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -51,6 +54,7 @@ public class MindspaceApplication extends Application {
     public void initialize() {
         taskService = TaskServiceImpl.getInstance();
         createPreviouslyExistedTasks();
+        StageEventManager eventManager = new StageEventManager();
 
         DeadlineThread deadlineThread = new DeadlineThread(taskService);
         deadlineThread.setDaemon(true);

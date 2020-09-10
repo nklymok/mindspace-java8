@@ -2,10 +2,7 @@ package com.nklymok.mindspace.controller;
 
 import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.component.ResourceBundles;
-import com.nklymok.mindspace.eventsystem.AppEventBus;
-import com.nklymok.mindspace.eventsystem.Subscriber;
-import com.nklymok.mindspace.eventsystem.TaskDeleteEvent;
-import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
+import com.nklymok.mindspace.eventsystem.*;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
@@ -51,26 +48,8 @@ public class RecentItemPaneController implements Comparable<RecentItemPaneContro
     }
 
     private void edit() {
-        ResourceBundle resourceBundle = ResourceBundles.getResourceBundle();
-        FXMLLoader editStageFXMLLoader = new FXMLLoader(
-                getClass().getResource("/fxmls/edit-stage.fxml"),
-                resourceBundle);
-
-        EditStageController editStageController = new EditStageController(model);
-        editStageFXMLLoader.setController(editStageController);
-
-        Stage stage = new Stage(StageStyle.TRANSPARENT);
-        try {
-            Scene editScene = new Scene(editStageFXMLLoader.load());
-            editScene.setFill(Color.TRANSPARENT);
-            stage.setScene(editScene);
-            stage.setOnShown(event -> BlurEffect.getInstance().blur());
-            stage.setOnHidden(event -> BlurEffect.getInstance().unblur());
-            stage.setAlwaysOnTop(true);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println("posting taskeditevent");
+        AppEventBus.post(new TaskEditEvent(model));
     }
 
     @Subscribe

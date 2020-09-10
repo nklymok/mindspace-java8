@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
 
 public class SandboxPaneController implements Initializable, Subscriber {
     private final Map<TaskModel, Node> modelToNode;

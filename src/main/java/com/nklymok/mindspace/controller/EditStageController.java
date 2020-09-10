@@ -1,24 +1,32 @@
 package com.nklymok.mindspace.controller;
 
+import com.google.common.eventbus.Subscribe;
 import com.nklymok.mindspace.component.PriorityComboBox;
 import com.nklymok.mindspace.component.Repeats;
 import com.nklymok.mindspace.component.RepetitionComboBox;
+import com.nklymok.mindspace.component.ResourceBundles;
 import com.nklymok.mindspace.eventsystem.AppEventBus;
 import com.nklymok.mindspace.eventsystem.Subscriber;
+import com.nklymok.mindspace.eventsystem.TaskEditEvent;
 import com.nklymok.mindspace.eventsystem.TaskUpdateEvent;
 import com.nklymok.mindspace.model.TaskModel;
 import com.nklymok.mindspace.service.TaskService;
 import com.nklymok.mindspace.service.impl.TaskServiceImpl;
+import com.nklymok.mindspace.view.effect.BlurEffect;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import tornadofx.control.DateTimePicker;
 
 import java.net.URL;
@@ -89,25 +97,34 @@ public class EditStageController implements Initializable, Subscriber {
         model.setPriority(priorityComboBox.getPriority());
     }
 
-    @FXML
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // getting the singletons
-        AppEventBus.register(this);
-        taskService = TaskServiceImpl.getInstance();
-
-        // setting existing values
+    public void setFields() {
         fieldHeader.setText(model.getHeader());
         fieldDescription.setText(model.getDescription());
         priorityComboBox.setPriority(model.getPriority());
         comboBoxIndicatorPane.setPriority(model.getPriority());
         repetitionComboBox.setValue(Repeats.None);
         dateTimePicker.setDateTimeValue(model.getDueDate());
+    }
 
-        // setting listeners
+    public void setActionListeners() {
         exitButton.setOnAction(exitButtonHandler);
         saveAndExitButton.setOnAction(saveAndExitButtonHandler);
         priorityComboBox.setOnAction(this::priorityComboBoxAction);
+    }
+
+    @FXML
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        AppEventBus.register(this);
+
+        // getting the singletons
+        taskService = TaskServiceImpl.getInstance();
+
+        // setting existing values
+        setFields();
+
+        // setting listeners
+        setActionListeners();
 
         // setting passed calendar day cells to disabled & custom styles
         dateTimePicker.setDayCellFactory(datePicker -> new DateCell() {
