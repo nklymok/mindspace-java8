@@ -53,11 +53,7 @@ public class BackgroundComboBox extends JFXComboBox<Pair<String, String>> implem
 
         valueProperty().addListener((obs, oldVal, newVal) -> {
             String pick = newVal.getValue();
-            if (pick == null) {
-                return;
-            } else {
                 AppEventBus.post(new BackgroundUpdateEvent(pick));
-            }
         });
     }
 

@@ -61,11 +61,11 @@ public class SandboxPaneController implements Initializable, Subscriber {
 
     @Subscribe
     private void handleBackgroundUpdateEvent(BackgroundUpdateEvent event) {
-        String address = event.getAddress();
         setBackground(event.getAddress());
     }
 
     private void setBackground(String address) {
+        System.out.println(address);
         if (sandboxPane.getStyleClass().size() > 1) {
             sandboxPane.getStyleClass().remove(1);
         }
@@ -80,14 +80,10 @@ public class SandboxPaneController implements Initializable, Subscriber {
         if (bg == null || !bg.equals(address)) {
             Preferences.userRoot().put("bgsandboxpane", address);
         }
-
-        System.out.println(Preferences.userRoot().get("bgsandboxpane", null));
     }
 
     private void setBackground() {
-        System.out.println(sandboxPane.getStyleClass());
-        sandboxPane.getStyleClass().add(Preferences.userRoot().get("bgsandboxpane", null));
-        System.out.println(sandboxPane.getStyleClass());
+        setBackground(Preferences.userRoot().get("bgsandboxpane", null));
     }
 
     private void relocateTaskNode(Node taskNode) {
