@@ -66,12 +66,12 @@ public class SandboxPaneController implements Initializable, Subscriber {
     }
 
     private void setBackground(String address) {
-        if (address == null) {
+        if (sandboxPane.getStyleClass().size() > 1) {
             sandboxPane.getStyleClass().remove(1);
         }
 
-        if (sandboxPane.getStyleClass().size() > 1) {
-            sandboxPane.getStyleClass().remove(1);
+        if (address == null) {
+            return;
         }
 
         sandboxPane.getStyleClass().add(address);
@@ -86,7 +86,7 @@ public class SandboxPaneController implements Initializable, Subscriber {
 
     private void setBackground() {
         System.out.println(sandboxPane.getStyleClass());
-        sandboxPane.getStyleClass().add(Preferences.userRoot().get("bg-sandboxpane", null));
+        sandboxPane.getStyleClass().add(Preferences.userRoot().get("bgsandboxpane", null));
         System.out.println(sandboxPane.getStyleClass());
     }
 

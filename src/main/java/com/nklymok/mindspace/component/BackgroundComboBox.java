@@ -10,23 +10,26 @@ import javafx.scene.control.ListCell;
 import javafx.util.Pair;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class BackgroundComboBox extends JFXComboBox<Pair<String, String>> implements Subscriber {
 
-    private final ObservableList<Pair<String, String>> backgroundComboBoxItems = FXCollections.observableArrayList(
-            new Pair<>("None", null),
-            new Pair<>("City 1", "image1"),
-            new Pair<>("City 2", "image2"),
-            new Pair<>("Flowers 1", "image3"),
-            new Pair<>("Flowers 2", "image4"),
-            new Pair<>("Moon", "image5"),
-            new Pair<>("Camping", "image6")
-    );
+    private final ResourceBundle resourceBundle;
 
 
     public BackgroundComboBox() {
         super();
         AppEventBus.register(this);
+        resourceBundle = ResourceBundles.getResourceBundle();
+        ObservableList<Pair<String, String>> backgroundComboBoxItems = FXCollections.observableArrayList(
+                new Pair<>(resourceBundle.getString("settings_bg_none"), null),
+                new Pair<>(resourceBundle.getString("settings_bg_i1"), "image1"),
+                new Pair<>(resourceBundle.getString("settings_bg_i2"), "image2"),
+                new Pair<>(resourceBundle.getString("settings_bg_i3"), "image3"),
+                new Pair<>(resourceBundle.getString("settings_bg_i4"), "image4"),
+                new Pair<>(resourceBundle.getString("settings_bg_i5"), "image5"),
+                new Pair<>(resourceBundle.getString("settings_bg_i6"), "image6")
+        );
         setItems(backgroundComboBoxItems);
         setCellFactory(comboBox -> new ListCell<Pair<String, String>>() {
             @Override
