@@ -1,0 +1,5 @@
+.sandbox-pane {
+    -fx-background-image: url("../imgs/6.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}

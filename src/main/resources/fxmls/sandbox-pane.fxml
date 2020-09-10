@@ -4,6 +4,7 @@
 
 
 <BorderPane fx:id="sandboxPane" fx:controller="com.nklymok.mindspace.controller.SandboxPaneController" minHeight="300.0"
+            stylesheets="/styles/SandboxPane_styles.css" styleClass="sandbox-pane"
             minWidth="300.0" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.261"
             xmlns:fx="http://javafx.com/fxml/1">
 </BorderPane>
