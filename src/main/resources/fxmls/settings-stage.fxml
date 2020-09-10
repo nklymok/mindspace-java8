@@ -9,6 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
+<?import com.nklymok.mindspace.component.BackgroundComboBox?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0"
           prefWidth="200.0" styleClass="pane" stylesheets="@../styles/settings_styles.css"
           xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
@@ -65,10 +66,10 @@
                 <Insets/>
             </GridPane.margin>
         </Text>
-        <LanguageComboBox fx:id="bgComboBox" maxHeight="25.0" maxWidth="90.0" minHeight="25.0" minWidth="90.0"
-                          prefHeight="25.0" prefWidth="90.0" promptText="%settings_bg_prompt" visibleRowCount="2"
-                          GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
-                          GridPane.valignment="CENTER"/>
+        <BackgroundComboBox fx:id="bgComboBox" maxHeight="25.0" maxWidth="90.0" minHeight="25.0" minWidth="90.0"
+                            prefHeight="25.0" prefWidth="90.0" promptText="%settings_bg_prompt" visibleRowCount="2"
+                            GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                            GridPane.valignment="CENTER"/>
         <Button fx:id="aboutButton" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0"
                 mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="button-about"
                 text="%settings_about" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3"

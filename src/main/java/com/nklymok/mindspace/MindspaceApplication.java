@@ -51,6 +51,11 @@ public class MindspaceApplication extends Application {
         stage.show();
     }
 
+    @Override
+    public void stop() throws Exception {
+        ConnectionManager.closeConnection();
+    }
+
     public void initialize() {
         taskService = TaskServiceImpl.getInstance();
         createPreviouslyExistedTasks();

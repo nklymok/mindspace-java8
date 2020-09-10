@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class SandboxPaneController implements Initializable, Subscriber {
     private final Map<TaskModel, Node> modelToNode;
@@ -56,6 +57,37 @@ public class SandboxPaneController implements Initializable, Subscriber {
         DeletionAnimation deletionAnimation = new DeletionAnimation(modelToNode.get(eventModel));
         deletionAnimation.setOnFinished(e -> removeTask(eventModel));
         deletionAnimation.play();
+    }
+
+    @Subscribe
+    private void handleBackgroundUpdateEvent(BackgroundUpdateEvent event) {
+        String address = event.getAddress();
+        setBackground(event.getAddress());
+    }
+
+    private void setBackground(String address) {
+        if (address == null) {
+            sandboxPane.getStyleClass().remove(1);
+        }
+
+        if (sandboxPane.getStyleClass().size() > 1) {
+            sandboxPane.getStyleClass().remove(1);
+        }
+
+        sandboxPane.getStyleClass().add(address);
+        Preferences prefs = Preferences.userRoot();
+        String bg = prefs.get("bgsandboxpane", null);
+        if (bg == null || !bg.equals(address)) {
+            Preferences.userRoot().put("bgsandboxpane", address);
+        }
+
+        System.out.println(Preferences.userRoot().get("bgsandboxpane", null));
+    }
+
+    private void setBackground() {
+        System.out.println(sandboxPane.getStyleClass());
+        sandboxPane.getStyleClass().add(Preferences.userRoot().get("bg-sandboxpane", null));
+        System.out.println(sandboxPane.getStyleClass());
     }
 
     private void relocateTaskNode(Node taskNode) {
@@ -115,5 +147,7 @@ public class SandboxPaneController implements Initializable, Subscriber {
                 relocateTaskNode(item.getValue());
             }
         });
+
+        setBackground();
     }
 }

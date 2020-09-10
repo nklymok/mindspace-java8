@@ -1,5 +1,28 @@
 .sandbox-pane {
-    -fx-background-image: url("../imgs/6.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
+}
+
+.image1 {
+    -fx-background-image: url("../imgs/1.jpg");
+}
+
+.image2 {
+    -fx-background-image: url("../imgs/2.jpg");
+}
+
+.image3 {
+    -fx-background-image: url("../imgs/3.jpg");
+}
+
+.image4 {
+    -fx-background-image: url("../imgs/4.jpg");
+}
+
+.image5 {
+    -fx-background-image: url("../imgs/5.jpg");
+}
+
+.image6 {
+    -fx-background-image: url("../imgs/6.jpg");
 }
