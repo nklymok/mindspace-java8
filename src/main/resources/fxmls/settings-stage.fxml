@@ -9,43 +9,73 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@../styles/settings_styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nklymok.mindspace.controller.SettingsStageController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0"
+          prefWidth="200.0" styleClass="pane" stylesheets="@../styles/settings_styles.css"
+          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.nklymok.mindspace.controller.SettingsStageController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="%settings_header" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+        <Button fx:id="exitButton" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0"
+                mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="button-exit"
+                GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <graphic>
+                <FontIcon id="closeButton" iconLiteral="fa-close" iconSize="16"/>
+            </graphic>
+        </Button>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="%settings_header" GridPane.columnSpan="2"
+              GridPane.halignment="CENTER" GridPane.valignment="TOP">
             <GridPane.margin>
-                <Insets top="5.0" />
+                <Insets top="5.0"/>
             </GridPane.margin>
         </Text>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="%settings_desc" GridPane.columnSpan="2"
+              GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"/>
         <FontIcon iconLiteral="fa-globe" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <GridPane.margin>
-                <Insets left="20.0" />
+                <Insets left="5.0"/>
             </GridPane.margin>
         </FontIcon>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="%settings_lang" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="%settings_lang" GridPane.halignment="RIGHT"
+              GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <GridPane.margin>
-                <Insets left="20.0" />
+                <Insets/>
             </GridPane.margin>
         </Text>
-        <Button fx:id="aboutButton" mnemonicParsing="false" styleClass="button-about" text="%settings_about" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+        <LanguageComboBox fx:id="languageComboBox" maxHeight="25.0" maxWidth="90.0" minHeight="25.0" minWidth="90.0"
+                          prefHeight="25.0" prefWidth="90.0" promptText="%settings_lang_prompt" visibleRowCount="2"
+                          GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                          GridPane.valignment="CENTER"/>
+        <FontIcon iconLiteral="fa-image" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <GridPane.margin>
+                <Insets left="5.0"/>
+            </GridPane.margin>
+        </FontIcon>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="%settings_bg" GridPane.halignment="RIGHT"
+              GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+        </Text>
+        <LanguageComboBox fx:id="bgComboBox" maxHeight="25.0" maxWidth="90.0" minHeight="25.0" minWidth="90.0"
+                          prefHeight="25.0" prefWidth="90.0" promptText="%settings_bg_prompt" visibleRowCount="2"
+                          GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                          GridPane.valignment="CENTER"/>
+        <Button fx:id="aboutButton" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0"
+                mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="button-about"
+                text="%settings_about" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                GridPane.valignment="CENTER">
             <graphic>
-                <FontIcon iconLiteral="fa-github" iconSize="16" />
+                <FontIcon iconLiteral="fa-github" iconSize="16"/>
             </graphic>
         </Button>
-        <LanguageComboBox fx:id="languageComboBox" promptText="%settings_lang_prompt" visibleRowCount="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Button fx:id="exitButton" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="button-exit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-            <graphic>
-                <FontIcon id="closeButton" iconLiteral="fa-close" iconSize="16" />
-            </graphic>
-        </Button>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="%settings_desc" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
     </children>
 </GridPane>
