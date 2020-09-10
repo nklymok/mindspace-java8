@@ -16,6 +16,7 @@ All you have to do is make up a header for it!
 
 - Beautiful
 - Minimalistic Design
+- Customizable
 - Multiple Language support
 - Easy to create and edit tasks
 - Archiving no longer used tasks
