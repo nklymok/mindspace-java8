@@ -13,7 +13,7 @@ public class LanguageComboBox extends JFXComboBox<Pair<String, Locale>> {
     private final ObservableList<Pair<String, Locale>> languageComboBoxItems = FXCollections.observableArrayList(
             new Pair<>("Default", Locale.forLanguageTag("en-US")),
             new Pair<>("English", Locale.forLanguageTag("en-US")),
-            new Pair<>("Ukrainian", Locale.forLanguageTag("uk-UA"))
+            new Pair<>("Українська", Locale.forLanguageTag("uk-UA"))
     );
 
 
