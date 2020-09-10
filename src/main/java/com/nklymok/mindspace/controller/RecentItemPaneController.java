@@ -48,7 +48,6 @@ public class RecentItemPaneController implements Comparable<RecentItemPaneContro
     }
 
     private void edit() {
-        System.out.println("posting taskeditevent");
         AppEventBus.post(new TaskEditEvent(model));
     }
 

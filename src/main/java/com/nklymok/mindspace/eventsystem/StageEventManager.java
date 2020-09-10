@@ -19,7 +19,7 @@ public class StageEventManager implements Subscriber {
     }
 
     @Subscribe
-    public static void handeTaskEditEvent(TaskEditEvent event) {
+    public static void handleTaskEditEvent(TaskEditEvent event) {
         ResourceBundle resourceBundle = ResourceBundles.getResourceBundle();
         FXMLLoader editStageFXMLLoader = new FXMLLoader(
                 TaskEditEvent.class.getResource("/fxmls/edit-stage.fxml"),
