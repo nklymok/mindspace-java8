@@ -38,7 +38,7 @@ public class MindspaceApplication extends Application {
         Scene scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
         stage.setOnCloseRequest(e -> {
-            ConnectionManager.getInstance().closeConnection();
+            ConnectionManager.closeConnection();
         });
         stage.setTitle("Project MindSpace");
         stage.getIcons().add(new Image(getClass().getResource("/sprites/icon.png").toString()));
