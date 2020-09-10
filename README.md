@@ -1,4 +1,6 @@
 # Project MindSpace
+
+## Enjoying your sticky notes? What if I got something better?
 <br/>
 
 This is a minimalistic To-Do application written in Java 9 using JavaFX that helps you organize all the tasks you planned from now on.
@@ -7,7 +9,7 @@ Change the priority, the due date, the repetition of your tasks and move them ar
 
 All you have to do is make up a header for it!
 
-<img src="https://i.imgur.com/T9ryQ2Z.png" width="800" height="600">
+<img src="https://i.imgur.com/o2QigZz.png" width="975" height="525">
 
 <br/>
 
