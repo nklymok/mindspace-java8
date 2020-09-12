@@ -9,7 +9,7 @@ Change the priority, the due date, the repetition of your tasks and move them ar
 
 All you have to do is make up a header for it!
 
-<img src="https://i.imgur.com/o2QigZz.png" width="975" height="525">
+<img src="https://i.imgur.com/o2QigZz.png" width="980" height="525">
 
 <br/>
 
