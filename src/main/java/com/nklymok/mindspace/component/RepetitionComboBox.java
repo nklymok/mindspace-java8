@@ -14,4 +14,18 @@ public class RepetitionComboBox extends ComboBox<Repeats> {
         super();
         setItems(repetitionComboBoxItems);
     }
+
+    public int getRepeats() {
+        if (getValue() == null) {
+            return 0;
+        }
+
+        switch (getValue()) {
+            case Daily: return 1;
+            case Weekly: return 2;
+            case Monthly: return 3;
+            case Yearly: return 4;
+            default: return 0;
+        }
+    }
 }
