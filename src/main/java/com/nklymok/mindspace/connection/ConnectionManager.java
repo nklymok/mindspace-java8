@@ -15,6 +15,7 @@ public class ConnectionManager {
     private static String DB_USERNAME;
     private static String DB_PASSWORD;
     private static String DB_CREATE;
+    private static String DB_ADDCOLUMN;
 
     private static boolean closed = false;
 
@@ -27,12 +28,12 @@ public class ConnectionManager {
             System.exit(-1);
         }
 
-//        DB_DRIVER = properties.getProperty("sql.driver");
-        DB_DRIVER = "org.h2.Driver";
+        DB_DRIVER = properties.getProperty("sql.driver");
         DB_URL = properties.getProperty("sql.url");
         DB_USERNAME = properties.getProperty("sql.username");
         DB_PASSWORD = properties.getProperty("sql.password");
         DB_CREATE = properties.getProperty("sql.createdb");
+        DB_ADDCOLUMN = properties.getProperty("sql.modifycolumn");
     }
 
     private static final class Helper {
@@ -62,8 +63,10 @@ public class ConnectionManager {
 
     private void createTable() {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(DB_CREATE);
-            preparedStatement.execute();
+            PreparedStatement ps1 = connection.prepareStatement(DB_CREATE);
+            ps1.execute();
+            PreparedStatement ps2 = connection.prepareStatement(DB_ADDCOLUMN);
+            ps2.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

@@ -17,12 +17,6 @@ import java.util.Properties;
 
 public class TaskRepositoryImpl implements TaskRepository {
 
-//    private static final String SAVE_QUERY = "INSERT INTO tasks(header, description, duedate, priority) VALUES(?,?,?,?)";
-//    private static final String DELETE_QUERY = "DELETE FROM tasks WHERE id = ?";
-//    private static final String SELECT_QUERY = "SELECT * FROM tasks WHERE id = ?";
-//    private static final String SELECT_ALL_QUERY = "SELECT * FROM tasks";
-//    private static final String UPDATE_QUERY = "UPDATE tasks " +
-//            "SET header = ?, description = ?, duedate = ?, priority = ? WHERE id = ?";
     private static String SAVE_QUERY;
     private static String DELETE_QUERY;
     private static String SELECT_QUERY;
@@ -73,6 +67,7 @@ public class TaskRepositoryImpl implements TaskRepository {
                         .description(resultSet.getString(3))
                         .dueDate(resultSet.getTimestamp(4).toLocalDateTime())
                         .priority(resultSet.getInt(5))
+                        .repeats(resultSet.getInt(6))
                         .build();
             }
         } catch (SQLException e) {
@@ -93,6 +88,7 @@ public class TaskRepositoryImpl implements TaskRepository {
                 .description(resultSet.getString(3))
                 .dueDate(resultSet.getTimestamp(4).toLocalDateTime())
                 .priority(resultSet.getInt(5))
+                .repeats(resultSet.getInt(6))
                 .build());
             }
         } catch (SQLException e) {
@@ -109,6 +105,7 @@ public class TaskRepositoryImpl implements TaskRepository {
             preparedStatement.setString(2, task.getDescription());
             preparedStatement.setTimestamp(3, Timestamp.valueOf(task.getDueDate()));
             preparedStatement.setInt(4, task.getPriority());
+            preparedStatement.setInt(5, task.getRepeats());
             preparedStatement.executeUpdate();
 
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
@@ -129,7 +126,8 @@ public class TaskRepositoryImpl implements TaskRepository {
             preparedStatement.setString(2, task.getDescription());
             preparedStatement.setTimestamp(3, Timestamp.valueOf(task.getDueDate()));
             preparedStatement.setInt(4, task.getPriority());
-            preparedStatement.setLong(5, task.getId());
+            preparedStatement.setInt(5, task.getRepeats());
+            preparedStatement.setLong(6, task.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

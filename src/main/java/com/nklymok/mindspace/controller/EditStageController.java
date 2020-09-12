@@ -39,8 +39,8 @@ import java.util.ResourceBundle;
 // localization - DONE
 // repeats -
 // readme - DONE
-// background images for sandbox pane -
-// release -
+// background images for sandbox pane - DONE
+// release - DONE
 
 public class EditStageController implements Initializable, Subscriber {
     @FXML

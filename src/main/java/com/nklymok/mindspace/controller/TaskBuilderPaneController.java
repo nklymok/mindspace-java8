@@ -53,6 +53,7 @@ public class TaskBuilderPaneController implements Initializable, Subscriber {
                 .description(fieldDescription.getText())
                 .dueDate(dateTimePicker.getDateTimeValue())
                 .priority(comboBoxIndicatorPane.getIntValue())
+                .repeats(repetitionComboBox.getRepeats())
                 .build();
         if (!checkModel(taskModel)) {
             return;

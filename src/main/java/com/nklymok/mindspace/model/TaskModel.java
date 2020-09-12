@@ -14,14 +14,16 @@ public class TaskModel implements Comparable<TaskModel> {
     private String description;
     private LocalDateTime dueDate;
     private Integer priority;
+    private Integer repeats;
 
     @Builder
-    public TaskModel(Long id, String header, String description, LocalDateTime dueDate, Integer priority) {
+    public TaskModel(Long id, String header, String description, LocalDateTime dueDate, Integer priority, Integer repeats) {
         this.id = id;
         this.header = header;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.repeats = repeats;
     }
 
     public boolean isExpired() {
