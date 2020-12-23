@@ -3,7 +3,7 @@
 ## Enjoying your sticky notes? What if I got something better?
 <br/>
 
-This is a minimalistic To-Do application written in Java 9 using JavaFX that helps you organize all the tasks you planned from now on.
+This is a minimalist To-Do application written in Java 9 using JavaFX that helps you organize all the tasks you planned from now on.
 
 Change the priority, the due date, the repetition of your tasks and move them around just as you want.
 
@@ -17,7 +17,7 @@ All you have to do is make up a header for it!
 <br/>
 
 - Beautiful
-- Minimalistic Design
+- Minimalist Design
 - Customizable
 - Multiple Language support
 - Easy to create and edit tasks
